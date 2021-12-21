@@ -54,8 +54,8 @@
               <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
                   <form method="post" class="needs-validation" novalidate="">
-
                     @foreach($data as $info)
+
                       <div class="card-header">
                         <h4><i class="fa fa-user-circle"></i> Personal  </h4>
                       </div>
@@ -81,6 +81,8 @@
                               <label>Last Name</label>
                               <input 
                                 type="text"
+                                name="last"
+                                id="last"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->last_name }}"
                                 required=""
@@ -93,9 +95,10 @@
                               <label>Middle Name</label>
                               <input 
                                 type="text" 
+                                name="middle"
+                                id="middle"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->middle_name }}" 
-                                required=""
                               >
                               <div class="invalid-feedback">
                                 Please fill in the Middle name
@@ -108,11 +111,19 @@
                               <label>Birthday</label>
                               <input 
                                 type="text" 
-                                name="name" 
-                                id="name" 
+                                name="birthdate1" 
+                                id="birthdate1" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ date('j \\ F Y', strtotime($info->birthday)) }}" 
                                 required=""
+                                onclick="displayDate();"
+                              >
+                              <input 
+                                type="date" 
+                                name="birthdate2" 
+                                id="birthdate2" 
+                                class="form-control " 
+                                value="{{ date('j \\ F Y', strtotime($info->birthday)) }}" 
                               >
                               <div class="invalid-feedback">
                                 Please fill in the Birthday
@@ -362,5 +373,13 @@
               [...document.querySelectorAll(".input-disable")].forEach((element) => {
                   element.classList.toggle('input-able')
               });
+
+              function displayDate(){
+                var birth1 = document.getElementById("birthdate1");
+                var birth2 = document.getElementById("birthdate2");
+                birth2.classList.remove("hidden");
+                birth1.classList.add("hidden");
+              }
+
           </script>
         @endif

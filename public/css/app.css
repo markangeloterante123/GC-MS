@@ -30,3 +30,11 @@ textarea.form-control {
 .input-able{
     pointer-events: auto;
 }
+
+.hidden {
+    display: none !important;
+}
+
+/* .show {
+    display:flex !important;
+} */

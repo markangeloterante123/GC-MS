@@ -24,7 +24,7 @@ class CreateUser extends Component
 
         return array_merge([
             'user.name' => 'required|min:3',
-            'user.email' => 'required|email|unique:users,email'
+            'user.email' => 'required|email|unique:users,email',
         ], $rules);
     }
 

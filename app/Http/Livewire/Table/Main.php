@@ -13,7 +13,7 @@ class Main extends Component
     public $model;
     public $name;
 
-    public $perPage = 50;
+    public $perPage = 100;
     public $sortField = "id";
     public $sortAsc = false;
     public $search = '';

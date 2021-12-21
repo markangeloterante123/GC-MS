@@ -40,20 +40,13 @@
                         </a> 
                         {{ $user->name }}
                     </td>
-                    <td>
-                        <a href="{{ url('user/information/'.$user->id) }}">
-                            {{ $user->email }}
-                        </a>
-                    </td>
-                    <td><a href="{{ url('user/information/'.$user->id) }}">{{ $user->position }}</a></td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->position }}</td>
                     <td>{{ $user->employement_status }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ url('user/edit/'.$user->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                        <a role="button" href="{{ url('user/information/'.$user->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
                         @if($user->is_admin == 0)
                             <a role="button" x-on:click.prevent="deleteItem" href="#" class="mr-3"><i class="fa fa-16px fa-trash text-red-500"></i></a>
-                        @endif
-                        @if($user->file >= 1)
-                            <a role="button" href="#" title="201 Record"><i class="fa fa-16px fa-folder-open text-green-500"></i></a>
                         @endif
                     </td>
                     @endif
