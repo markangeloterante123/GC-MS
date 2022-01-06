@@ -34,6 +34,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/update/account',"pages.user.user-update-profile" )->name('update.account');
     Route::view('/update/password',"pages.user.user-update-password" )->name('update.password');
     Route::view('/update/setting',"pages.user.user-setting" )->name('update.setting');
+    Route::put('/update/user/info/{id}', [ UserController::class, "user_update" ])->name('update.user.info');
 
     //Import and Exporting User information
     Route::get('export', [UserController::class, "export"])->name("export");

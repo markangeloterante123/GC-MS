@@ -53,9 +53,18 @@
               </div>
               <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
-                  <form method="post" class="needs-validation" novalidate="">
-                    @foreach($data as $info)
+                @if (session('status'))
+                    <h6 class="alert alert-success">{{ session('status') }}</h6>
+                @endif
+                
+                @if($data->count() <= 0)
+                    <h6 class="alert alert-danger">No 201 File Records</h6>
+                @endif 
 
+                @foreach($data as $info) 
+                  <form action="{{ url('update/user/info/'.$info->user_id) }}" method="post" class="needs-validation" novalidate="">
+                    @method('PUT')
+                    @csrf
                       <div class="card-header">
                         <h4><i class="fa fa-user-circle"></i> Personal  </h4>
                       </div>
@@ -65,8 +74,8 @@
                               <label>First Name</label>
                               <input 
                                 type="text" 
-                                name="name" 
-                                id="name" 
+                                name="first_name" 
+                                id="first_name" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->first_name }}" 
                                 required=""
@@ -81,8 +90,8 @@
                               <label>Last Name</label>
                               <input 
                                 type="text"
-                                name="last"
-                                id="last"
+                                name="last_name"
+                                id="last_name"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->last_name }}"
                                 required=""
@@ -95,8 +104,8 @@
                               <label>Middle Name</label>
                               <input 
                                 type="text" 
-                                name="middle"
-                                id="middle"
+                                name="middle_name"
+                                id="middle_name"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->middle_name }}" 
                               >
@@ -110,20 +119,11 @@
                             <div class="form-group col-md-6 col-12">
                               <label>Birthday</label>
                               <input 
-                                type="text" 
-                                name="birthdate1" 
-                                id="birthdate1" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ date('j \\ F Y', strtotime($info->birthday)) }}" 
-                                required=""
-                                onclick="displayDate();"
-                              >
-                              <input 
                                 type="date" 
-                                name="birthdate2" 
-                                id="birthdate2" 
+                                name="birthday" 
+                                id="birthday" 
                                 class="form-control " 
-                                value="{{ date('j \\ F Y', strtotime($info->birthday)) }}" 
+                                value="{{ Carbon\Carbon::parse($info->birthday)->format('Y-m-d') }}" 
                               >
                               <div class="invalid-feedback">
                                 Please fill in the Birthday
@@ -131,14 +131,17 @@
                             </div>                   
                             <div class="form-group col-md-6 col-12">
                               <label>Gender</label>
-                              <input 
-                                type="text" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ $info->gender }}" 
-                                required=""
-                              >
+                              <select name="gender" id="gender" class="form-control " >
+                                <option value="{{ $info->gender }}">{{ $info->gender }}</option>
+                                @if ($info->gender == "Male")
+                                  <option value="Female">Female</option>
+                                @else
+                                  <option value="Male">Male</option>
+                                @endif
+                              </select>
+
                               <div class="invalid-feedback">
-                                Please fill in the Gender
+                                Please Select in the Gender
                               </div>
                             </div>
                           </div>
@@ -153,8 +156,8 @@
                               <label>Position</label>
                               <input 
                                 type="text" 
-                                name="name" 
-                                id="name" 
+                                name="position" 
+                                id="position" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->position }}" 
                                 required=""
@@ -166,13 +169,15 @@
                             <div class="form-group col-md-6 col-12">
                               <label>Employment Status</label>
                               <input 
-                                type="text" 
+                                type="text"
+                                name="employement_status"
+                                id="employement_status" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->employement_status }}" 
                                 required=""
                               >
                               <div class="invalid-feedback">
-                                Please fill in the Status
+                                Please select employee status
                               </div>
                             </div>
                           </div>
@@ -181,11 +186,11 @@
                             <div class="form-group col-md-6 col-12">
                               <label>Date Hired</label>
                               <input 
-                                type="text" 
-                                name="name" 
-                                id="name" 
+                                type="date" 
+                                name="date_hired" 
+                                id="date_hired" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ date('j \\ F Y', strtotime($info->date_hired)) }}" 
+                                value="{{ Carbon\Carbon::parse($info->date_hired)->format('Y-m-d') }}" 
                                 required=""
                               >
                               <div class="invalid-feedback">
@@ -195,9 +200,11 @@
                             <div class="form-group col-md-6 col-12">
                               <label>End Contract Date</label>
                               <input 
-                                type="text" 
+                                type="date" 
+                                name="date_end"
+                                id="date_end"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ date('j \\ F Y', strtotime($info->date_end)) }}" 
+                                value="{{ Carbon\Carbon::parse($info->date_end)->format('Y-m-d') }}" 
                                 required=""
                               >
                               <div class="invalid-feedback">
@@ -211,8 +218,8 @@
                               <label>Payslip</label>
                               <input 
                                 type="text" 
-                                name="name" 
-                                id="name" 
+                                name="pay_slip_link" 
+                                id="pay_slip_link" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->pay_slip_link }}" 
                                 required=""
@@ -233,8 +240,8 @@
                               <label>Personal Email</label>
                               <input 
                                 type="text" 
-                                name="name" 
-                                id="name" 
+                                name="email" 
+                                id="email" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->email }}" 
                                 required=""
@@ -246,7 +253,9 @@
                             <div class="form-group col-md-6 col-12">
                               <label>Company Email</label>
                               <input 
-                                type="text" 
+                                type="text"
+                                name="work_email"
+                                id="work_email" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->work_email }}" 
                                 required=""
@@ -262,8 +271,8 @@
                               <label>Phone No</label>
                               <input 
                                 type="text" 
-                                name="name" 
-                                id="name" 
+                                name="phone_no" 
+                                id="phone_no" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->phone_no }}" 
                                 required=""
@@ -276,6 +285,8 @@
                               <label>Cellphone No</label>
                               <input 
                                 type="text" 
+                                name="cel_no"
+                                id="cel_no"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->cel_no }}" 
                                 required=""
@@ -288,6 +299,8 @@
                               <label>Current Address</label>
                               <input 
                                 type="text" 
+                                name="address_1"
+                                id="address_1"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->address_1 }}" 
                                 required=""
@@ -300,6 +313,8 @@
                               <label>Address</label>
                               <input 
                                 type="text" 
+                                name="address_2"
+                                id="address_2"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->address_2 }}" 
                                 required=""
@@ -319,6 +334,8 @@
                               <label>Name</label>
                               <input 
                                 type="text" 
+                                name="emergency_name"
+                                id="emergency_name"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_name }}" 
                                 required=""
@@ -331,6 +348,8 @@
                               <label>Relation</label>
                               <input 
                                 type="text" 
+                                name="emergency_relation"
+                                id="emergency_relation"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_relation }}" 
                                 required=""
@@ -343,6 +362,8 @@
                               <label>Emergency Contact</label>
                               <input 
                                 type="text" 
+                                name="emergency_contact"
+                                id="emergency_contact"
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_contact }}" 
                                 required=""
@@ -373,13 +394,5 @@
               [...document.querySelectorAll(".input-disable")].forEach((element) => {
                   element.classList.toggle('input-able')
               });
-
-              function displayDate(){
-                var birth1 = document.getElementById("birthdate1");
-                var birth2 = document.getElementById("birthdate2");
-                birth2.classList.remove("hidden");
-                birth1.classList.add("hidden");
-              }
-
           </script>
         @endif
