@@ -44,9 +44,19 @@
                     <td>{{ $user->position }}</td>
                     <td>{{ $user->employement_status }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="{{ url('user/information/'.$user->id) }}" class="mr-3"><i class="fa fa-16px fa-pen"></i></a>
+                        @if( $user->file == 0)
+                            <a role="button" href="{{ url('user/information/'.$user->id) }}" class="mr-3 tool"><i class="fa fa-16px fa-pen text-red-500"></i> 
+                                <span class="tooltiptext bg-warning">No File Record</span>
+                            </a>     
+                        @else 
+                            <a role="button" href="{{ url('user/information/'.$user->id) }}" class="mr-3 tool"><i class="fa fa-16px fa-pen"></i>
+                                <span class="tooltiptext bg-success">Edit File Record</span>
+                            </a>
+                        @endif
                         @if($user->is_admin == 0)
-                            <a role="button" x-on:click.prevent="deleteItem" href="#" class="mr-3"><i class="fa fa-16px fa-trash text-red-500"></i></a>
+                            <a role="button" x-on:click.prevent="deleteItem" href="#" class="mr-3 tool"><i class="fa fa-16px fa-trash text-red-500"></i>
+                                <span class="tooltiptext bg-danger">Delete Account</span>
+                            </a>
                         @endif
                     </td>
                     @endif

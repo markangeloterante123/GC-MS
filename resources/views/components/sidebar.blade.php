@@ -27,11 +27,19 @@ $links = [
     [
         "href" => [
             [
+                
                 "section_text" => "User",
                 "icon"=>"fas fa-user-plus",
                 "section_list" => [
                     ["href" => "user", "text" => "Data User"],
                     ["href" => "user.new", "text" => "Add User"]
+                ]
+            ],
+            [
+                "section_text" => "Setting",
+                "icon"=>"fas fa-cogs",
+                "section_list" => [
+                    ["href" => "setting.options", "text" => "Add Options"],
                 ]
             ]
         ],

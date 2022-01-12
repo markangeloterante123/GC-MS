@@ -25,15 +25,15 @@
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
+            <div class="mt-10 sm:mt-0 py-5">
                 @livewire('profile.logout-other-browser-sessions-form')
             </div>
 
             <x-jet-section-border />
 
-            <div class="mt-10 sm:mt-0">
+            <!-- <div class="mt-10 sm:mt-0">
                 @livewire('profile.delete-user-form')
-            </div>
+            </div> -->
             
         </div>
     </div>

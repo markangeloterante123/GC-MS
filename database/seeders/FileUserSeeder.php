@@ -18,7 +18,7 @@ class FileUserSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
         $current = 1;
-        for ($i = 0; $i < 201; $i++){
+        for ($i = 0; $i < 200; $i++){
             \DB::table('file_records')->insert([
                 'user_id' =>$current + $i,
                 'first_name' => $faker->name(),

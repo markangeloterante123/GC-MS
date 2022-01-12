@@ -1,3 +1,19 @@
+@font-face {
+    font-family: ProximaNova-bold;
+    src: url("../fonts/ProximaNova-Extrabld.woff2");
+}
+
+@font-face {
+    font-family: ProximaNova-Regular;
+    src: url("../fonts/ProximaNova-Regular.woff2");
+}
+
+@font-face {
+    font-family: ProximaNova-Regular-italic;
+    src: url("../fonts/ProximaNova-Regularlt.woff2");
+    font-weight: bold;
+}
+
 #table_pagination nav > div.hidden > div:nth-child(2) > span span.relative.text-gray-500 {
     background-color: #6777ef !important;
     color: white;
@@ -34,7 +50,64 @@ textarea.form-control {
 .hidden {
     display: none !important;
 }
+  
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    /* background-color: rgb(145, 0, 43); */
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+  
+.tool:hover .tooltiptext {
+    visibility: visible;
+}
 
+.remove-option{
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    visibility: hidden;
+}
+
+.option-container:hover .form-holder{
+    background-color: #ccfce1;
+}
+
+.option-container:hover .remove-option{
+    visibility: visible;
+}
+
+
+.hero {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;   
+}
+
+.card-hero {
+    background: #fff;
+    padding: 45px 25px 45px 25px;
+    border-radius: 25px;
+}
+
+.container-logo{
+    padding-bottom: 30px;
+    width: 60px;
+    height: 60px;
+}
+
+@media only screen and (max-width:640px){
+    .content-container {
+        padding-top: 200px !important;
+    } 
+}
 /* .show {
     display:flex !important;
 } */

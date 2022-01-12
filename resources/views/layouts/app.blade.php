@@ -60,7 +60,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Imnport Records</h5>
+                <h5 class="modal-title">Import Records</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -108,6 +108,7 @@
         <script defer src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
         <script defer src="{{ asset('stisla/js/modules/chart.min.js') }}"></script>
         <script defer src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+        
 
         <script src="{{ asset('stisla/js/stisla.js') }}"></script>
         <script src="{{ asset('stisla/js/scripts.js') }}"></script>

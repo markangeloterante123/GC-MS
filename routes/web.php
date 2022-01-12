@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OptionsController;
+use App\Http\Controllers\SalaryHistoryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect('/login');
 });
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
@@ -35,6 +38,15 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/update/password',"pages.user.user-update-password" )->name('update.password');
     Route::view('/update/setting',"pages.user.user-setting" )->name('update.setting');
     Route::put('/update/user/info/{id}', [ UserController::class, "user_update" ])->name('update.user.info');
+
+    //adding user setting 
+    Route::get('/setting/options', [ OptionsController::class, "index" ])->name('setting.options');
+    Route::put('/setting/add/{type}', [ OptionsController::class, "create"])->name('setting.add');
+    Route::delete('/setting/remove/{id}', [ OptionsController::class, "destroy" ])->name('setting.remove');
+
+    //salary informations
+    Route::put('/setting/salary/update/{id}', [ SalaryHistoryController::class, "store" ])->name('setting.salary.update');
+    Route::put('/setting/salary/edit/{id}', [ SalaryHistoryController::class, "edit" ])->name('setting.salary.edit');
 
     //Import and Exporting User information
     Route::get('export', [UserController::class, "export"])->name("export");

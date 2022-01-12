@@ -49,7 +49,7 @@ class CreateUser extends Component
             'position'=>'No Assign Role',
             'file'=> 0,
             'employement_status'=>'Set Employment status',
-            'password' => Hash::make($this->user['password']),
+            'password' => $this->user['password'],
         ]);
 
         $this->emit('saved');

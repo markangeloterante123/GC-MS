@@ -6,7 +6,7 @@
           <div class="">
             <div class="row mt-sm-4">
               <div class="col-12 col-md-12 col-lg-5">
-              @foreach($data as $info)
+                @foreach($data as $info)
                 <div class="card profile-widget">
                   <div class="profile-widget-header">
                     <img src="{{ $info->profile_photo_url }}" alt="{{ $info->name }}" style="width:130px; height:130px;" class="rounded-circle profile-widget-picture">
@@ -32,41 +32,202 @@
 
                     Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.
                   </div>
-                  <div class="card-footer text-center">
-                    <div class="font-weight-bold mb-2">Follow Ujang On</div>
-                    <a href="#" class="btn btn-social-icon btn-facebook mr-1">
-                      <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="btn btn-social-icon btn-twitter mr-1">
-                      <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="btn btn-social-icon btn-github mr-1">
-                      <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="btn btn-social-icon btn-instagram">
-                      <i class="fab fa-instagram"></i>
-                    </a>
-                  </div>
                 </div>
-              @endforeach
+                @endforeach
+                <!-- User Salary Informations -->
+                <div class="card">
+                  <div class="card-header">
+                    <h4><i class="fa fa-history"></i> Salary History </h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                      <!--Accordion wrapper-->
+                        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                          
+                              <div class="card">
+                                  <div class="card-header" role="tab" id="headingOne1">
+                                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                                      aria-controls="collapseOne1">
+                                      <h5 class="mb-0">
+                                        Salary<i class="fas fa-angle-down rotate-icon"></i>
+                                      </h5>
+                                    </a>
+                                  </div>
+                                  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+                                    data-parent="#accordionEx">
+                                    <div class="card-body">
+                                      <div class="row">
+                                        @foreach($history as $his)
+                                          @if($his->user_id == $userId)
+                                            @if($his->status == 1)
+                                              <div class="form-group option-container col-md-6 col-6">
+                                                <label>{{ $his->type }}</label>
+                                                <input type="text" name="options" id="options" class="form-control form-holder" value="₱ {{ number_format($his->salary, 2) }}" disabled >
+                                              
+                                                <form action="{{ url('setting/salary/edit/'.$his->id) }}" method="POST">
+                                                  @csrf
+                                                  @method('PUT')
+                                                  <button type="submit" class="btn-dl-3 tool remove-option"> <i class="fa fa-16px fa-times text-red-500"></i>
+                                                      <span class="tooltiptext  bg-danger">Update</span>
+                                                  </button>
+                                                </form>
+                                              </div>
+                                            @endif
+                                          @endif
+                                        @endforeach 
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                              
+                              <div class="card">
+                                <div class="card-header" role="tab" id="headingTwo2">
+                                  <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                                    aria-expanded="false" aria-controls="collapseTwo2">
+                                    <h5 class="mb-0">
+                                      History<i class="fas fa-angle-down rotate-icon"></i>
+                                    </h5>
+                                  </a>
+                                </div>
+                                <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+                                  data-parent="#accordionEx">
+                                  <div class="card-body">
+                                    <div class="row">
+                                        @foreach($history as $his)
+                                          @if($his->user_id == $userId)
+                                            @if($his->status == 0)
+                                              <div class="form-group option-container col-md-6 col-6">
+                                                <label>{{ $his->type }}</label>
+                                                <input type="text" name="options" id="options" class="form-control form-holder" value="₱ {{ number_format($his->salary, 2) }}" disabled >
+                                              
+                                                <form action="{{ url('setting/salary/edit/'.$his->id) }}" method="POST">
+                                                  @csrf
+                                                  @method('PUT')
+                                                  <button type="submit" class="btn-dl-3 tool remove-option"> <i class="fa fa-16px fa-times text-red-500"></i>
+                                                      <span class="tooltiptext  bg-danger">Update</span>
+                                                  </button>
+                                                </form>
+                                              </div>
+                                            @endif
+                                          @endif
+                                        @endforeach 
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                      
+                        <!-- End Accordion  -->
+
+                    </div>
+                  </div>
+                  @if($user->is_admin == 1)
+                    <div class="card-header">
+                        <h4><i class="fa fa-plus-circle"></i> Add Employee Salary</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('setting/salary/update/'.$userId) }}" id="form" method="post" class="needs-validation" novalidate="" >
+                              @method('PUT')
+                              @csrf
+                            <div class="row">
+                                <div class="form-group col-md-6 col-12">
+                                  <label>Salary</label>
+                                    <input 
+                                        type="text" 
+                                        name="salary" 
+                                        id="salary" 
+                                        class="form-control"
+                                        required=""
+                                    >
+                                    <div class="invalid-feedback">
+                                        Please fill in the Salary
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-12">
+                                  <label>Type</label>
+                                    <select name="type" id="type" class="form-control">
+                                      @foreach($opt as $op)
+                                        @if($op->type == 3)
+                                          <option value="{{ $op->options }}">{{ $op->options }}</option>
+                                        @endif
+                                      @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please Select Salary Type
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12 col-12">
+                                  <label>Effective Date</label>
+                                    <textarea name="notes" id="notes" class="form-control" cols="30" rows="10" >
+                                    </textarea>
+                                    <div class="invalid-feedback">
+                                        Please Select Salary Type
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-12">
+                                  <label>Effective Date</label>
+                                    <input 
+                                        type="date" 
+                                        name="effective_date" 
+                                        id="effective_date" 
+                                        class="form-control"
+                                        required=""
+                                    >
+                                    <div class="invalid-feedback">
+                                        Please Select Salary Type
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-6 col-12">
+                                  <label>End Date</label>
+                                    <input 
+                                        type="date" 
+                                        name="end_date" 
+                                        id="end_date" 
+                                        class="form-control"
+                                        required=""
+                                    >
+                                    <div class="invalid-feedback">
+                                        Please Select Salary Type
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                              <button class="btn btn-primary">Add Salary</button>
+                            </div>
+                        </form>
+                    </div>
+                  @endif
+
+                  
+                </div>
+                <!-- Salary Div End here -->
 
               </div>
+              
+              
+              <!-- Another Row -->
               <div class="col-12 col-md-12 col-lg-7">
                 <div class="card">
                 @if (session('status'))
                     <h6 class="alert alert-success">{{ session('status') }}</h6>
                 @endif
-                
-                @if($data->count() <= 0)
-                    <h6 class="alert alert-danger">No 201 File Records</h6>
-                @endif 
 
                 @foreach($data as $info) 
-                  <form action="{{ url('update/user/info/'.$info->user_id) }}" method="post" class="needs-validation" novalidate="">
+                  @if($info->file == 0)
+                      <h6 class="alert alert-danger">No 201 File Record</h6>
+                  @endif 
+                @endforeach
+
+                @foreach($data as $info) 
+                  <form action="{{ url('update/user/info/'.$userId) }}" method="post" class="needs-validation" novalidate="">
                     @method('PUT')
                     @csrf
                       <div class="card-header">
-                        <h4><i class="fa fa-user-circle"></i> Personal  </h4>
+                        <h4><i class="fa fa-archive"></i> Personal  </h4>
                       </div>
                       <div class="card-body">
                           <div class="row">
@@ -118,27 +279,50 @@
                           <div class="row">
                             <div class="form-group col-md-6 col-12">
                               <label>Birthday</label>
-                              <input 
-                                type="date" 
-                                name="birthday" 
-                                id="birthday" 
-                                class="form-control " 
-                                value="{{ Carbon\Carbon::parse($info->birthday)->format('Y-m-d') }}" 
-                              >
+
+                              @if($user->is_admin == 1)
+                                <input 
+                                  type="date" 
+                                  name="birthday" 
+                                  id="birthday" 
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->birthday)->format('Y-m-d') }}" 
+                                >
+                              @else
+                                <input 
+                                  type="text" 
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->birthday)->format('F d, Y') }}" 
+                                >
+                              @endif
+
                               <div class="invalid-feedback">
                                 Please fill in the Birthday
                               </div>
                             </div>                   
                             <div class="form-group col-md-6 col-12">
                               <label>Gender</label>
-                              <select name="gender" id="gender" class="form-control " >
-                                <option value="{{ $info->gender }}">{{ $info->gender }}</option>
-                                @if ($info->gender == "Male")
-                                  <option value="Female">Female</option>
+                                @if($user->is_admin == 1)
+                                  <select name="gender" id="gender" class="form-control " >
+                                    @if(empty($info->gender ))
+                                      <option value="{{ $info->gender }}">Select Gender</option>
+                                      <option value="Female">Female</option>
+                                    @else
+                                      <option value="{{ $info->gender }}">{{ $info->gender }}</option>
+                                    @endif
+                                    @if ($info->gender == "Male")
+                                      <option value="Female">Female</option>
+                                    @else
+                                      <option value="Male">Male</option>
+                                    @endif                                
+                                  </select>
                                 @else
-                                  <option value="Male">Male</option>
+                                  <input 
+                                    type="text" 
+                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    value="{{ $info->gender }}" 
+                                  >
                                 @endif
-                              </select>
 
                               <div class="invalid-feedback">
                                 Please Select in the Gender
@@ -154,59 +338,93 @@
                           <div class="row">
                             <div class="form-group col-md-6 col-12">
                               <label>Position</label>
-                              <input 
-                                type="text" 
-                                name="position" 
-                                id="position" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ $info->position }}" 
-                                required=""
-                              >
-                              <div class="invalid-feedback">
-                                Please fill in the Employee Position
-                              </div>
+                              @if($user->is_admin == 1)
+                                <select name="position" id="position" class="form-control">
+                                    <option value="{{ $info->position }}">{{ $info->position }}</option>
+                                    @foreach($opt as $op)
+                                      @if($op->options != $info->position && $op->type == 2)
+                                        <option value="{{ $op->options }}">{{ $op->options }}</option>
+                                      @endif
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please fill in the Employee Position
+                                </div>
+                              @else
+                                <input 
+                                  type="text"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ $info->position }}"
+                                >
+                              @endif
                             </div>                   
                             <div class="form-group col-md-6 col-12">
                               <label>Employment Status</label>
-                              <input 
-                                type="text"
-                                name="employement_status"
-                                id="employement_status" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ $info->employement_status }}" 
-                                required=""
-                              >
-                              <div class="invalid-feedback">
-                                Please select employee status
-                              </div>
+                              @if($user->is_admin == 1)
+                                <select name="employement_status" id="employement_status" class="form-control">
+                                    <option value="{{ $info->position }}">{{ $info->employement_status }}</option>
+                                    @foreach($opt as $op)
+                                      @if($op->options != $info->employement_status && $op->type == 1)
+                                        <option value="{{ $op->options }}">{{ $op->options }}</option>
+                                      @endif
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                  Please select employee status
+                                </div>
+                              @else
+                                <input 
+                                  type="text"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ $info->employement_status }}" 
+                                >
+                              @endif
                             </div>
                           </div>
 
                           <div class="row">
                             <div class="form-group col-md-6 col-12">
                               <label>Date Hired</label>
-                              <input 
-                                type="date" 
-                                name="date_hired" 
-                                id="date_hired" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ Carbon\Carbon::parse($info->date_hired)->format('Y-m-d') }}" 
-                                required=""
-                              >
+                              @if($user->is_admin == 1)
+                                <input 
+                                  type="date" 
+                                  name="date_hired" 
+                                  id="date_hired" 
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->date_hired)->format('Y-m-d') }}" 
+                                  required=""
+                                >
+                              @else 
+                                <input 
+                                  type="text"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->date_hired)->format('F m, Y') }}" 
+                                >
+                              @endif
+
                               <div class="invalid-feedback">
                                 Please fill in the Date Hired
                               </div>
                             </div>                   
                             <div class="form-group col-md-6 col-12">
                               <label>End Contract Date</label>
-                              <input 
-                                type="date" 
-                                name="date_end"
-                                id="date_end"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ Carbon\Carbon::parse($info->date_end)->format('Y-m-d') }}" 
-                                required=""
-                              >
+                              @if($user->is_admin == 1)
+                                <input 
+                                  type="date" 
+                                  name="date_end"
+                                  id="date_end"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->date_end)->format('Y-m-d') }}" 
+                                  required=""
+                                >
+                              @else 
+                                <input 
+                                  type="text"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->date_end)->format('F m, Y') }}" 
+                                >
+                              @endif
+
                               <div class="invalid-feedback">
                                 Please fill in the Status
                               </div>
@@ -376,12 +594,14 @@
                       </div>
                       @endif
 
-                    @endforeach
-                   @if(  $user->is_admin == 1 || $info->update_request == 1)
-                    <div class="card-footer text-right">
-                      <button class="btn btn-primary">Save Changes</button>
-                    </div>
-                  @endif
+                    
+                    @if(  $user->is_admin == 1 || $info->update_request == 1)
+                      <div class="card-footer text-right">
+                        <button class="btn btn-primary">Save Changes</button>
+                      </div>
+                    @endif
+                  @endforeach
+
                   </form>
                 </div>
               </div>

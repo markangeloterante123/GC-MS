@@ -33,6 +33,7 @@ class FileRecord extends Model
         'update_request',
         'date_end',
         'contract_status',
+        'work_email',
     ];
 
 }

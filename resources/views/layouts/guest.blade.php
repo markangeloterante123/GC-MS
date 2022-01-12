@@ -13,13 +13,16 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/bootstrap.min.css') }}">
 
         <!-- Scripts -->
         <script defer src="{{ asset('vendor/alpine.js') }}"></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        
+        <div class="font-sans text-gray-900 antialiased ">
             {{ $slot }}
         </div>
     </body>
+    <script src="{{ asset('stisla/js/modules/bootstrap.min.js') }}"></script>
 </html>
