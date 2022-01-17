@@ -1,10 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OptionsController;
 use App\Http\Controllers\SalaryHistoryController;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GoogleSocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('/callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+
 Route::get('/', function () {
     //return view('welcome');
     return redirect('/login');
 });
+
+
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/dashboard', "dashboard")->name('dashboard');

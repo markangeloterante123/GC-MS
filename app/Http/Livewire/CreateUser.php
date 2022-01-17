@@ -45,7 +45,7 @@ class CreateUser extends Component
         User::create([
             'name' => $this->user['name'],
             'email' => $this->user['email'],
-            'is_admin'=> 0,
+            'is_admin'=> $this->user['is_admin'],
             'position'=>'No Assign Role',
             'file'=> 0,
             'employement_status'=>'Set Employment status',

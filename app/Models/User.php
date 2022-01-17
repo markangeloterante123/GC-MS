@@ -33,6 +33,8 @@ class User extends Authenticatable
         'position',
         'employement_status',
         '201',
+        'social_id',
+        'social_type'
     ];
 
     /**

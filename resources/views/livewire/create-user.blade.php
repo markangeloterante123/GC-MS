@@ -23,6 +23,16 @@
             </div>
             
             @if ($action == "createUser")
+            
+            <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <small></small>
+                <select name="is_admin" id="is_admin" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="user.is_admin">
+                    <option value="0">User Account</option>
+                    <option value="1">Admin Account</option>
+                </select>
+            </div>
+
             <div class="form-group col-span-6 sm:col-span-5">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
                 <small></small>

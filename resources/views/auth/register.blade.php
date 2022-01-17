@@ -3,6 +3,11 @@
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>
+        
+        <div class="register-title">
+            <h2>Create Account :)</h2>
+            <p>Fillup with proper informations</p>
+        </div>
 
         <x-jet-validation-errors class="mb-4" />
 
@@ -29,13 +34,12 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
+                <button class="ml-4 btn-default btn-active">
+                    Register
+                </button>
             </div>
         </form>
     </x-jet-authentication-card>
