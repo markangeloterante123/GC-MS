@@ -21,11 +21,8 @@ Route::get('/auth/google', [GoogleSocialiteController::class, 'redirectToGoogle'
 Route::get('/callback/google', [GoogleSocialiteController::class, 'handleCallback']);
 
 Route::get('/', function () {
-    //return view('welcome');
     return redirect('/login');
 });
-
-
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/dashboard', "dashboard")->name('dashboard');

@@ -47,9 +47,10 @@ textarea.form-control {
     pointer-events: auto;
 }
 
-.hidden {
+/* start */
+/* .hidden {
     display: none !important;
-}
+} */
   
 .tooltiptext {
     visibility: hidden;
@@ -84,6 +85,7 @@ textarea.form-control {
     visibility: visible;
 }
 
+/* end */
 
 .hero {
     background-position: center;

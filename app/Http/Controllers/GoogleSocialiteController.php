@@ -37,20 +37,24 @@ class GoogleSocialiteController extends Controller
       
                 Auth::login($finduser);
      
-                return redirect('/home');
+                return redirect('/login');
       
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'social_id'=> $user->id,
+                    'is_admin'=> 0,
+                    'position'=>'No Assign Role',
+                    'employement_status'=>'Set Employment status',
+                    'file'=>0,
                     'social_type'=> 'google',
                     'password' => encrypt('my-google')
                 ]);
      
                 Auth::login($newUser);
       
-                return redirect('/home');
+                return redirect('/login');
             }
      
         } catch (Exception $e) {

@@ -117,9 +117,9 @@
         <script src="{{ asset('stisla/js/page/bootstrap-modal.js') }}"></script>
 
         <livewire:scripts />
-        <script src="{{ mix('js/app.js') }}" defer></script>
-        
 
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        
         @isset($script)
             {{ $script }}
         @endisset

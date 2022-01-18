@@ -13,7 +13,7 @@ $user = auth()->user();
     <ul class="navbar-nav navbar-right">
         <li class="dropdown"><a href="#" data-turbolinks="false" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             @if (!is_null($user))
-                <div class="d-sm-none d-lg-inline-flex py-4"><img alt="image" class="mr-3 rounded-circle" width="70" src="{{ $user->profile_photo_url }}"> Hi, {{ $user->name }}</div></a>
+                <div class="d-sm-none d-lg-inline-flex py-4"><img alt="image" class="mr-3 rounded-circle" width="70" src="{{ asset($user->profile_photo_url) }}"> Hi, {{ $user->name }}</div></a>
             @else
                 <div class="d-sm-none d-lg-inline-block">Hi, Welcome</div></a>
             @endif

@@ -9,7 +9,7 @@
                 @foreach($data as $info)
                 <div class="card profile-widget">
                   <div class="profile-widget-header">
-                    <img src="{{ $info->profile_photo_url }}" alt="{{ $info->name }}" style="width:130px; height:130px;" class="rounded-circle profile-widget-picture">
+                    <img src="{{ asset($info->profile_photo_url) }}" alt="{{ $info->name }}" style="width:130px; height:130px;" class="rounded-circle profile-widget-picture">
                     <div class="profile-widget-items">
                       <div class="profile-widget-item">
                         <div class="profile-widget-item-label">Date Hired</div>

@@ -36,7 +36,7 @@
                     <td>{{ $user->id }}</td>
                     <td class="userInformationTable">
                         <a href="{{ url('user/information/'.$user->id) }}">
-                            <img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}"class="mr-3 rounded-circle" style="width:40px; height:40px;">
+                            <img src="{{ asset($user->profile_photo_url) }}" alt="{{ $user->name }}"class="mr-3 rounded-circle" style="width:40px; height:40px;">
                         </a> 
                         {{ $user->name }}
                     </td>
