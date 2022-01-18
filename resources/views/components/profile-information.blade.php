@@ -9,28 +9,26 @@
                 @foreach($data as $info)
                 <div class="card profile-widget">
                   <div class="profile-widget-header">
-                    <img src="{{ asset($info->profile_photo_url) }}" alt="{{ $info->name }}" style="width:130px; height:130px;" class="rounded-circle profile-widget-picture">
+                    <img src="{{ asset($info->profile_photo_url) }}" alt="{{ $info->name }}" style="width:130px; height:130px; border:2px solid #fff;" class="rounded-circle profile-widget-picture">
                     <div class="profile-widget-items">
                       <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Date Hired</div>
-                        <div class="profile-widget-item-value">{{ \Carbon\Carbon::parse($info->date_hired)->format('j F, Y')}}</div>
+                        <div class="profile-widget-item-label title-label">Date Hired</div>
+                        <div class="profile-widget-item-value title-value">{{ \Carbon\Carbon::parse($info->date_hired)->format('j F, Y')}}</div>
                       </div>
                       <div class="profile-widget-item">
-                        <div class="profile-widget-item-label">Use Email</div>
-                        <div class="profile-widget-item-value">{{ $info->email }}</div>
+                        <div class="profile-widget-item-label title-label">Use Email</div>
+                        <div class="profile-widget-item-value title-value">{{ $info->email }}</div>
                       </div>
                     </div>
                   </div>
                   <div class="profile-widget-description">
-                    <div class="profile-widget-name">
+                    <div class="profile-widget-name title-value">
                         {{ $info->name }} 
-                        <div class="text-muted d-inline font-weight-normal">
+                        <div class="text-muted d-inline font-weight-normal ">
                             <div class="slash"></div> 
                             {{ $info->position }}
                         </div>    
                     </div>
-
-                    Ujang maman is a superhero name in <b>Indonesia</b>, especially in my family. He is not a fictional character but an original hero in my family, a hero for his children and for his wife. So, I use the name as a user in this template. Not a tribute, I'm just bored with <b>'John Doe'</b>.
                   </div>
                 </div>
                 @endforeach

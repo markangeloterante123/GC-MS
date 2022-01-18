@@ -56,20 +56,20 @@ $navigation_links = array_to_object($links);
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('dashboard') }}">GC Management System</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
-                <img class="d-inline-block" width="32px" height="30.61px" src="" alt="">
+                <img class="d-inline-block" width="32px" height="30.61px" src="{{ asset('img/logo-1.png') }}" alt="">
             </a>
         </div>
         @foreach ($navigation_links as $link)
         <ul class="sidebar-menu">
         @if($user->is_admin >= $link->access)
-            <li class="menu-header">{{ $link->text }}</li>
+            <li class="menu-header" style="color:#fff;">{{ $link->text }}</li>
             @if (!$link->is_multi)
             <li class="{{ Request::routeIs($link->href) ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route($link->href) }}"><i class="{{ $link->icon }}"></i><span>{{ $link->text }}</span></a>
+                <a class="nav-link" href="{{ route($link->href) }}"><i class="{{ $link->icon }}"></i><span >{{ $link->text }}</span></a>
             </li>
             @else
                 @foreach ($link->href as $section)
@@ -80,10 +80,10 @@ $navigation_links = array_to_object($links);
                         $is_active = in_array(true, $routes);
                     @endphp
                     <li class="dropdown {{ ($is_active) ? 'active' : '' }}">
-                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $section->icon }}"></i> <span>{{ $section->section_text }}</span></a>
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="{{ $section->icon }}"></i> <span >{{ $section->section_text }}</span></a>
                             <ul class="dropdown-menu">
                                 @foreach ($section->section_list as $child)
-                                    <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}">   {{ $child->text }}</a></li>
+                                    <li class="{{ Request::routeIs($child->href) ? 'active' : '' }}"><a class="nav-link" href="{{ route($child->href) }}" >   {{ $child->text }}</a></li>
                                 @endforeach
                             </ul>
                     </li>
