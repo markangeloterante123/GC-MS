@@ -29,6 +29,11 @@
                             {{ $info->position }}
                         </div>    
                     </div>
+                    <div class="profile-info">
+                      <h2>Name: {{ $info->name }}</h2>
+                      <h3>{{ $info->email }}</h3>
+                      <span>{{ $info->position }}</span>
+                    </div>
                   </div>
                 </div>
                 @endforeach

@@ -674,8 +674,8 @@ tr:first-child > td > .fc-day-grid-event {
 
 @media (max-width: 575.98px) {
   .profile-widget .profile-widget-picture {
-    left: 50%;
-    transform: translate(-50%, 0);
+    /* left: 50%;
+    transform: translate(-50%, 0); */
     margin: 40px 0;
     float: none; }
   .profile-widget .profile-widget-items .profile-widget-item {

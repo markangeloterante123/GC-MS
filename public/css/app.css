@@ -174,17 +174,24 @@ textarea.form-control {
     border-radius: 3px;
 }
 
-.profile-widget{
-    background-color:#202123;
+.breadcrumb-item a{
+    color:#202123;
+    font-weight: 700;
 }
 
-.profile-widget .title-label{
-    color:#246e57 !important;
+.breadcrumb-item a:hover{
+    color:#83b9a8;
 }
 
-.profile-widget .title-value {
-    color:#fff !important;
+.profile-info{
+    visibility: hidden;
+    text-align: center;
 }
+
+.profile-info h3 {
+    color:#909294
+}
+
 
 
 
@@ -226,6 +233,29 @@ textarea.form-control {
         transition: 1s ease;
     }
 
+}
+
+/* and (min-width:992px) */
+@media only screen and (max-width:1650px) {
+    .profile-widget-items{
+        display: none !important;
+    }
+    .profile-widget-header{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important; 
+    }
+    .profile-widget .profile-widget-picture {
+        margin: -35px 0 0 0 !important;
+    }
+
+    .profile-widget-name{
+        display: none;
+    }
+
+    .profile-info{
+        visibility: visible;
+    }
 }
 /* .show {
     display:flex !important;
