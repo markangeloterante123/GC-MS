@@ -143,7 +143,7 @@
                                         required=""
                                     >
                                     <div class="invalid-feedback">
-                                        Please fill in the Salary
+                                        Please fill in the Salary Info
                                     </div>
                                 </div>
 
@@ -157,16 +157,16 @@
                                       @endforeach
                                     </select>
                                     <div class="invalid-feedback">
-                                        Please Select Salary Type
+                                        Please Select Type of Salary
                                     </div>
                                 </div>
 
                                 <div class="form-group col-md-12 col-12">
-                                  <label>Effective Date</label>
+                                  <label>Comments</label>
                                     <textarea name="notes" id="notes" class="form-control" cols="30" rows="10" >
                                     </textarea>
                                     <div class="invalid-feedback">
-                                        Please Select Salary Type
+                                        Please add comment
                                     </div>
                                 </div>
 
@@ -180,7 +180,7 @@
                                         required=""
                                     >
                                     <div class="invalid-feedback">
-                                        Please Select Salary Type
+                                        Please Fill Effective Date
                                     </div>
                                 </div>
 
@@ -194,15 +194,15 @@
                                         required=""
                                     >
                                     <div class="invalid-feedback">
-                                        Please Select Salary Type
+                                        Please Fill End Date
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer text-right">
-                              <button class="btn btn-primary">Add Salary</button>
-                            </div>
-                        </form>
-                    </div>
+                            </div>    
+                      </div>
+                      <div class="card-footer text-right">
+                        <button class="btn-button-2">Add Salary</button>
+                      </div>
+                    </form>
                   @endif
 
                   

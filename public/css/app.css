@@ -146,6 +146,24 @@ textarea.form-control {
     color:#fff;
 }
 
+.btn-button-2{
+    border: 1px solid #02b075;
+    background:#02b075;
+    padding: 10px 30px;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(153, 153, 153, 0.5);
+    text-decoration: none !important;
+    font-size: 16px;
+    font-weight: 600;
+    color:#fff;
+}
+
+.btn-button-2:hover{
+    border: 1px solid rgb(4, 0, 37);
+    background:rgb(4, 0, 37);
+    color:#fff;
+}
+
 .google-form {
     padding-top:20px;
 }
