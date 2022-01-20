@@ -26,6 +26,7 @@ class OptionsController extends Controller
     {
         Options::create([
             'options'=>$request->options,
+            'description'=>$request->description,
             'type'=>$type,
         ]);
         return redirect()->back();

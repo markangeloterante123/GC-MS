@@ -24,6 +24,9 @@
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-shims.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free-v4-font-face.min.css" media="all">
         <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css" media="all">
+        
+        <!-- Editor -->	
+        <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 
         <livewire:styles />
 
@@ -119,6 +122,28 @@
         <livewire:scripts />
 
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <script>
+          ClassicEditor
+          .create( document.querySelector( '#notes' ) )
+          .catch( error => {
+          console.error( error );
+          } );
+        </script>
+        <script>
+          ClassicEditor
+          .create( document.querySelector( '#description-form' ) )
+          .catch( error => {
+          console.error( error );
+          } );
+        </script>
+        <script>
+          ClassicEditor
+          .create( document.querySelector( '#description-form2' ) )
+          .catch( error => {
+          console.error( error );
+          } );
+        </script>
         
         @isset($script)
             {{ $script }}

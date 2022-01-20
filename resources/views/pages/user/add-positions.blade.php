@@ -28,15 +28,17 @@
                             <div class="row">
                             @foreach($option as $info) 
                                 @if($info->type == 1)
-                                    <div class="form-group option-container col-12">
-                                        <input type="text" name="options" id="options" class="form-control form-holder" value="{{$info->options}}"disabled >
-                                        <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-dl-3 tool remove-option"> <i class="fa fa-16px fa-times text-red-500"></i>
-                                                <span class="tooltiptext  bg-danger">Remove Options</span>
-                                            </button>
-                                        </form>
+                                    <div class="accordion-wrapper">
+                                        <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
+                                        <div class="content">
+                                            <span>Description</span>
+                                            <p>{{ $info->description }}</p>
+                                            <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-button-2">Remove</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 @endif 
                             @endforeach
@@ -52,21 +54,31 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-12">
-                                        <input 
-                                            type="text" 
-                                            name="options" 
-                                            id="options" 
-                                            class="form-control"
-                                            required=""
-                                        >
-                                        <div class="invalid-feedback">
-                                            Please fill up the form
+                                            <input 
+                                                type="text" 
+                                                name="options" 
+                                                id="options" 
+                                                class="form-control"
+                                                required=""
+                                            >
+                                            <label>Status</label>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
                                         </div>
+                                        <label class="label-comment">Notes</label>
+                                        <div class="form-group col-12">
+                                            <textarea name="description" id="description-form2" class="form-control" cols="30" rows="10" require="">
+                                                -
+                                            </textarea>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary">Save Changes</button>
+                                    <button class="btn-button-2">Save Changes</button>
                                 </div>
                         </form>
                     </div>
@@ -84,15 +96,17 @@
                             <div class="row">
                             @foreach($option as $info) 
                                 @if($info->type == 2)
-                                    <div class="form-group option-container col-12">
-                                        <input type="text" name="options" id="options" class="form-control form-holder" value="{{$info->options}}"disabled >
-                                        <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-dl-3 tool remove-option"> <i class="fa fa-16px fa-times text-red-500"></i>
-                                                <span class="tooltiptext  bg-danger">Remove Options</span>
-                                            </button>
-                                        </form>
+                                    <div class="accordion-wrapper">
+                                        <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
+                                        <div class="content">
+                                            <span>Description</span>
+                                            <p>{{ $info->description }}</p>
+                                            <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-button-2">Remove</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 @endif 
                             @endforeach
@@ -108,22 +122,33 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-12">
-                                        <input 
-                                            type="text" 
-                                            name="options" 
-                                            id="options" 
-                                            class="form-control"
-                                            required=""
-                                        >
-                                        <div class="invalid-feedback">
-                                            Please fill up the form
+                                            
+                                            <input 
+                                                type="text" 
+                                                name="options" 
+                                                id="options" 
+                                                class="form-control"
+                                                required=""
+                                            >
+                                            <label for="options">Position</label>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
                                         </div>
+                                        <label class="label-comment">Position Task</label>
+                                        <div class="form-group col-12">
+                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" require="">
+                                            </textarea>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary">Save Changes</button>
+                                    <button class="btn-button-2">Save Changes</button>
                                 </div>
+                                
                         </form>
                     </div>
                 </div>
@@ -171,6 +196,8 @@
                                             class="form-control"
                                             required=""
                                         >
+                                        <label>Salary Type</label>
+                                        <input type="hidden" name="description" id="description" value="none">
                                         <div class="invalid-feedback">
                                             Please fill up the form
                                         </div>
@@ -178,7 +205,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button class="btn btn-primary">Save Changes</button>
+                                    <button class="btn-button-2">Save Changes</button>
                                 </div>
                         </form>
                     </div>

@@ -19516,3 +19516,47 @@ module.exports = __webpack_require__(/*! C:\xampp\htdocs\laravel-8-stisla-jetstr
 		
 	});
 })(jQuery);
+
+const inputs = document.querySelectorAll('.form-group input');
+const labels = document.querySelectorAll('.form-group label');
+
+labels.forEach(label => {
+	label.innerHTML = label.innerText
+		.split('')
+		.map((letter, idx) => `<span style="
+				transition-delay: ${idx * 50}ms
+			">${letter}</span>`)
+		.join('');
+});
+
+
+
+// accordion
+let toggles = document.getElementsByClassName("toggles");
+let contentDiv = document.getElementsByClassName("content");
+let icons = document.getElementsByClassName("icon");
+
+for (let i = 0; i < toggles.length; i++) {
+	toggles[i].addEventListener("click", () => {
+		if (parseInt(contentDiv[i].style.height) != contentDiv[i].scrollHeight) {
+			contentDiv[i].style.height = contentDiv[i].scrollHeight + "px";
+			toggles[i].style.color = "#02b075";
+			icons[i].classList.remove("fa-plus");
+			icons[i].classList.add("fa-minus");
+		} else {
+			contentDiv[i].style.height = "0px";
+			toggles[i].style.color = "#111130";
+			icons[i].classList.remove("fa-minus");
+			icons[i].classList.add("fa-plus");
+		}
+
+		for (let j = 0; j < contentDiv.length; j++) {
+			if (j !== i) {
+				contentDiv[j].style.height = 0;
+				toggles[j].style.color = "#111130";
+				icons[j].classList.remove("fa-minus");
+				icons[j].classList.add("fa-plus");
+			}
+		}
+	});
+}

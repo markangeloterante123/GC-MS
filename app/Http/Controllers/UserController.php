@@ -9,7 +9,6 @@ use App\Models\Options;
 use App\Models\SalaryHistory;
 use Auth;
 use Illuminate\Http\Request;
-
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -47,7 +46,6 @@ class UserController extends Controller
     }
 
     public function user_update(Request $request, $id){
-
         $user = User::find($id);
         $file = FileRecord::where('user_id',$id) -> first();
         if (is_null($file)) {
