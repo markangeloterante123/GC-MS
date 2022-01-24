@@ -49,10 +49,14 @@
                                 <span class="tooltiptext bg-warning">No File Record</span>
                             </a>     
                         @else 
-                            <a role="button" href="{{ url('user/information/'.$user->id) }}" class="mr-3 tool"><i class="fa fa-16px fa-pen"></i>
+                            <a role="button" href="{{ url('user/information/'.$user->id) }}" class="mr-3 tool"><i class="fa fa-16px fa-pen text-green-500"></i>
                                 <span class="tooltiptext bg-success">Edit File Record</span>
                             </a>
                         @endif
+                        
+                        <a role="button" href="#" class="mr-3 tool"><i class="fa fa-16px fa-sticky-note text-orange-500"></i>
+                            <span class="tooltiptext bg-warning">Send Reprimand</span>
+                        </a>
                         @if($user->is_admin == 0)
                             <a role="button" x-on:click.prevent="deleteItem" href="#" class="mr-3 tool"><i class="fa fa-16px fa-trash text-red-500"></i>
                                 <span class="tooltiptext bg-danger">Delete Account</span>

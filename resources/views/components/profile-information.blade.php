@@ -45,9 +45,9 @@
                       <h3>Status: {{ $info->employement_status }}</h3>
                     </div>
                     @foreach($opt as $op) 
-                      @if($op->options == $info->position)
+                      @if($op->options == $info->designation)
                         <div class="user-information">
-                          <h2>{{ $info->position }}</h2>
+                          <h2>{{ $info->designation }}</h2>
                           <p>{{ $op->description }}</p>
                         </div>
                       @endif
@@ -58,7 +58,7 @@
                 <!-- User Salary Informations -->
                 <div class="card">
                   <div class="card-header">
-                    <h4><i class="fa fa-history"></i> Salary History </h4>
+                    <h4><i class="fa fa-history"></i> Salary Records </h4>
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -182,7 +182,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6 col-12">
-                                    <select name="type" id="type" class="form-control">
+                                    <select name="type" id="type" class="form-control" required="">
                                       @foreach($opt as $op)
                                         @if($op->type == 3)
                                           <option value="{{ $op->options }}">{{ $op->options }}</option>
@@ -197,7 +197,7 @@
 
                                 <label class="label-comment">Comments</label>
                                 <div class="form-group col-md-12 col-12">  
-                                    <textarea name="notes" id="notes" class="form-control" cols="30" rows="10" require="">
+                                    <textarea name="notes" id="notes" class="form-control" cols="30" rows="10" required="">
                                     </textarea>
                                     <div class="invalid-feedback">
                                         Please add comment
@@ -344,6 +344,7 @@
                                       id="age" 
                                       class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                       value="{{ $info->age }}" 
+                                      required=""
                                     >
                                   @else
                                     <input 
@@ -386,7 +387,7 @@
                             </div>
                             <div class="form-group col-md-3 col-12">
                                   @if($user->is_admin == 1)
-                                    <select name="marital_status" id="marital_status" class="form-control">
+                                    <select name="marital_status" id="marital_status" class="form-control" required="">
                                       <option value="{{ $info->marital_status }}">{{ $info->marital_status }}</option>
                                       <option value="Single">Single</option>
                                       <option value="Married">Married</option>
@@ -416,7 +417,7 @@
                           <div class="row">
                             <div class="form-group col-md-6 col-12">
                               @if($user->is_admin == 1)
-                                <select name="designation" id="designation" class="form-control">
+                                <select name="designation" id="designation" class="form-control" required="">
                                     <option value="{{ $info->designation }}">{{ $info->designation }}</option>
                                     @foreach($opt as $op)
                                       @if($op->options != $info->designation && $op->type == 4)
@@ -449,7 +450,7 @@
 
                             <div class="form-group col-md-6 col-12">
                               @if($user->is_admin == 1)
-                                <select name="type_of_contract" id="type_of_contract" class="form-control">
+                                <select name="type_of_contract" id="type_of_contract" class="form-control" required="">
                                     <option value="{{ $info->type_of_contract }}">{{ $info->type_of_contract }}</option>
                                     @foreach($opt as $op)
                                       @if($op->options != $info->type_of_contract && $op->type == 5)
@@ -483,7 +484,7 @@
                             <div class="form-group col-md-6 col-12">
                               
                               @if($user->is_admin == 1)
-                                <select name="contracts" id="contracts" class="form-control">
+                                <select name="contracts" id="contracts" class="form-control" required="">
                                     <option value="{{ $info->contracts }}">{{ $info->contracts }}</option>
                                     @foreach($opt as $op)
                                       @if($op->options != $info->contracts && $op->type == 2)
@@ -516,8 +517,7 @@
                             <div class="form-group col-md-6 col-12">
                               
                               @if($user->is_admin == 1)
-                                <select name="contract_status" id="contract_status" class="form-control">
-                                    
+                                <select name="contract_status" id="contract_status" class="form-control" required="">
                                     <option value="{{ $info->contract_status }}">{{ $info->contract_status }}</option>
                                     <option value="Daily"> Daily</option>
                                     <option value="Monthly"> Monthly</option>
@@ -647,7 +647,7 @@
                               >
                               <label>Employee ID no.</label>
                               <div class="invalid-feedback">
-                                Please fill in the Payslip URL
+                                Please fill in Employee ID no.
                               </div>
                             </div>
 
@@ -662,7 +662,7 @@
                               >
                               <label>Account No.</label>
                               <div class="invalid-feedback">
-                                Please fill in the Payslip URL
+                                Please fill in the Account No.
                               </div>
                             </div>
 
@@ -677,7 +677,7 @@
                               >
                               <label>TIN No.</label>
                               <div class="invalid-feedback">
-                                Please fill in the Payslip URL
+                                Please fill in the TIN No.
                               </div>
                             </div>
 
@@ -692,7 +692,7 @@
                               >
                               <label>PhilHealth No.</label>
                               <div class="invalid-feedback">
-                                Please fill in the Payslip URL
+                                Please fill in the PhilHealth No.
                               </div>
                             </div>
 
@@ -722,7 +722,7 @@
                               >
                               <label>Pag-Ibig No.</label>
                               <div class="invalid-feedback">
-                                Please fill in Pag-Ibig
+                                Please fill in Pag-Ibig No.
                               </div>
                             </div>
 
@@ -737,7 +737,7 @@
                               >
                               <label>HMO</label>
                               <div class="invalid-feedback">
-                                Please fill in Pag-Ibig
+                                Please fill in HMO
                               </div>
                             </div>
 
@@ -752,7 +752,7 @@
                               >
                               <label>SIL Entitlement</label>
                               <div class="invalid-feedback">
-                                Please fill in Pag-Ibig
+                                Please fill in sil Entitlement
                               </div>
                             </div>
                             <div class="form-group col-12">
@@ -766,7 +766,7 @@
                               >
                               <label>Notes</label>
                               <div class="invalid-feedback">
-                                Please fill in Pag-Ibig
+                                Please Add Some Notes
                               </div>
                             </div>
 
@@ -801,10 +801,11 @@
                                 id="work_email" 
                                 class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
                                 value="{{ $info->work_email }}" 
+                                required=""
                               >
                               <label>Company Email</label>
                               <div class="invalid-feedback">
-                                Please fill in the Company Email
+                                Please fill up if no Company Email just put the Personal Email as a reference.
                               </div>
                             </div>
                             <div class="form-group col-md-4 col-12">
@@ -816,9 +817,9 @@
                                 value="{{ $info->cel_no }}" 
                                 required=""
                               >
-                              <label>Cellphone No</label>
+                              <label>Mobile No</label>
                               <div class="invalid-feedback">
-                                Please fill in the Cellphone No
+                                Please fill in the Mobile No
                               </div>
                             </div>
                           </div>
@@ -858,7 +859,7 @@
                               >
                               <label>Name 1</label>
                               <div class="invalid-feedback">
-                                Please fill in the Name
+                                Please fill in the Incased of Emergency Name 1
                               </div>
                           </div>
                           <div class="form-group col-md-4 col-12">
@@ -873,7 +874,7 @@
                               >
                               <label>Relation 1</label>
                               <div class="invalid-feedback">
-                                Please fill in the Name
+                                Please fill in the Incased of Emergency contact person relation 1
                               </div>
                           </div>
                           <div class="form-group col-md-4 col-12">
@@ -888,7 +889,7 @@
                               >
                               <label>Contact 1</label>
                               <div class="invalid-feedback">
-                                Please fill in the Name
+                                Please fill in the Incased of Emergency Contact No. 1
                               </div>
                           </div>
 
@@ -904,7 +905,7 @@
                               >
                               <label>Name 2</label>
                               <div class="invalid-feedback">
-                                Please fill in the Name
+                                Please fill in the Incased of Emergency Name 2
                               </div>
                           </div>
 
@@ -920,7 +921,7 @@
                               >
                               <label>Relation 2</label>
                               <div class="invalid-feedback">
-                                Please fill in the Name
+                                Please fill in the Incased of Emergency contact person relation 2
                               </div>
                           </div>
 
@@ -934,9 +935,9 @@
                                 value="{{ $info->emergency_contact2 }}" 
                                 required=""
                               >
-                              <label>Relation 2</label>
+                              <label>Contact 2</label>
                               <div class="invalid-feedback">
-                                Please fill in the Name
+                                Please fill in the Incased of Emergency Contact No. 2
                               </div>
                           </div>
 

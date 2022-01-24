@@ -97,8 +97,8 @@ class UserController extends Controller
         }
         //update file information 
         $file->update($request->all());
-        //update user file status
         $user->file = 1;
+        $user->employement_status = $request->contracts;
         $user->update($request->all());
         return redirect()->back()->with('status','Updated Successfully');
     }  

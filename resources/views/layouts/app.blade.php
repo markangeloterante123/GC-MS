@@ -141,6 +141,18 @@
           .catch( error => {
           } );
         </script>
+        <script>
+          ClassicEditor
+          .create( document.querySelector( '#description-form3' ) )
+          .catch( error => {
+          } );
+        </script>
+        <script>
+          ClassicEditor
+          .create( document.querySelector( '#description-form4' ) )
+          .catch( error => {
+          } );
+        </script>
         
         @isset($script)
             {{ $script }}

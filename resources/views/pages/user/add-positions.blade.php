@@ -18,7 +18,7 @@
     <section class="section">
         <div class="row mt-sm-4">
 
-            <div class="col-12 col-md-12 col-lg-6">
+            <!-- <div class="col-12 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fa fa-th-list"></i> Employee Status  </h4>
@@ -83,13 +83,13 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!--  -->
             <div class="col-12 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4><i class="fa fa-list-ol"></i> Employee Position  </h4>
+                        <h4><i class="fa fa-list-ol"></i> Employee Contract  </h4>
                     </div>
                     <div class="card-body">
                         <div class="card-body">
@@ -117,7 +117,7 @@
                             @method('PUT')
                             @csrf
                             <div class="card-header">
-                                    <h4><i class="fa fa-plus-circle"></i> Add Employee Position  </h4>
+                                    <h4><i class="fa fa-plus-circle"></i> Add Employee Contract</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -137,10 +137,10 @@
                                         </div>
                                         <label class="label-comment">Position Task</label>
                                         <div class="form-group col-12">
-                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" require="">
+                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" required="">
                                             </textarea>
                                             <div class="invalid-feedback">
-                                                Please fill up the form
+                                                Please add some description
                                             </div>
                                         </div>
                                     </div>
@@ -185,12 +185,11 @@
                             @method('PUT')
                             @csrf
                             <div class="card-header">
-                                    <h4><i class="fa fa-plus-circle"></i> Add type of Designation   </h4>
+                                    <h4><i class="fa fa-plus-circle"></i> Add Designation   </h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-12">
-                                            
                                             <input 
                                                 type="text" 
                                                 name="options" 
@@ -203,12 +202,12 @@
                                                 Please fill up the form
                                             </div>
                                         </div>
-                                        <label class="label-comment">Designation Info</label>
+                                        <label class="label-comment">Designation  Info</label>
                                         <div class="form-group col-12">
-                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" require="">
+                                            <textarea name="description" id="description-form4" class="form-control" cols="30" rows="10" required="">
                                             </textarea>
                                             <div class="invalid-feedback">
-                                                Please fill up the form
+                                                Please add some description
                                             </div>
                                         </div>
                                     </div>
@@ -274,10 +273,10 @@
                                         </div>
                                         <label class="label-comment">Contract Info</label>
                                         <div class="form-group col-12">
-                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" require="">
+                                            <textarea name="description" id="description-form3" class="form-control" cols="30" rows="10" required="">
                                             </textarea>
                                             <div class="invalid-feedback">
-                                                Please fill up the form
+                                                Please add some description
                                             </div>
                                         </div>
                                     </div>
