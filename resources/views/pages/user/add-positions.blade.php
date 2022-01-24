@@ -153,6 +153,144 @@
                     </div>
                 </div>
             </div>
+            <!-- Designation -->
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fa fa-list-ol"></i> Type of Designation  </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <div class="row">
+                            @foreach($option as $info) 
+                                @if($info->type == 4)
+                                    <div class="accordion-wrapper">
+                                        <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
+                                        <div class="content">
+                                            <span>Description</span>
+                                            <p>{{ $info->description }}</p>
+                                            <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-button-2">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endif 
+                            @endforeach
+                            </div>
+                        </div>
+                        
+                        <form action="{{ url('setting/add/4') }}" method="post" class="needs-validation" novalidate="">
+                            @method('PUT')
+                            @csrf
+                            <div class="card-header">
+                                    <h4><i class="fa fa-plus-circle"></i> Add type of Designation   </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            
+                                            <input 
+                                                type="text" 
+                                                name="options" 
+                                                id="options" 
+                                                class="form-control"
+                                                required=""
+                                            >
+                                            <label for="options">Designation </label>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
+                                        </div>
+                                        <label class="label-comment">Designation Info</label>
+                                        <div class="form-group col-12">
+                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" require="">
+                                            </textarea>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button class="btn-button-2">Save Changes</button>
+                                </div>
+                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type of contract -->
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fa fa-list-ol"></i> Type of Contract  </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <div class="row">
+                            @foreach($option as $info) 
+                                @if($info->type == 5)
+                                    <div class="accordion-wrapper">
+                                        <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
+                                        <div class="content">
+                                            <span>Description</span>
+                                            <p>{{ $info->description }}</p>
+                                            <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-button-2">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endif 
+                            @endforeach
+                            </div>
+                        </div>
+                        
+                        <form action="{{ url('setting/add/5') }}" method="post" class="needs-validation" novalidate="">
+                            @method('PUT')
+                            @csrf
+                            <div class="card-header">
+                                    <h4><i class="fa fa-plus-circle"></i> Add type of contract  </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            
+                                            <input 
+                                                type="text" 
+                                                name="options" 
+                                                id="options" 
+                                                class="form-control"
+                                                required=""
+                                            >
+                                            <label for="options">Contract</label>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
+                                        </div>
+                                        <label class="label-comment">Contract Info</label>
+                                        <div class="form-group col-12">
+                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" require="">
+                                            </textarea>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button class="btn-button-2">Save Changes</button>
+                                </div>
+                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Salary Options -->
             <div class="col-12 col-md-12 col-lg-6">

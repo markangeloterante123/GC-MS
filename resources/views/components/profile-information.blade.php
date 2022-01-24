@@ -315,9 +315,7 @@
                           </div>
                           
                           <div class="row">
-                            <div class="form-group col-md-6 col-12">
-                              
-
+                            <div class="form-group col-md-3 col-12">
                               @if($user->is_admin == 1)
                                 <input 
                                   type="date" 
@@ -337,9 +335,29 @@
                               <div class="invalid-feedback">
                                 Please fill in the Birthday
                               </div>
-                            </div>                   
-                            <div class="form-group col-md-6 col-12">
-                              
+                            </div>    
+                            <div class="form-group col-md-3 col-12">
+                                  @if($user->is_admin == 1)
+                                    <input 
+                                      type="text" 
+                                      name="age" 
+                                      id="age" 
+                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      value="{{ $info->age }}" 
+                                    >
+                                  @else
+                                    <input 
+                                      type="text" 
+                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      value="{{ $info->age }}" 
+                                    >
+                                  @endif
+                                <label>Age</label>
+                                <div class="invalid-feedback">
+                                  Please fill in the Age
+                                </div>
+                            </div>               
+                            <div class="form-group col-md-3 col-12">
                                 @if($user->is_admin == 1)
                                   <select name="gender" id="gender" class="form-control " >
                                     @if(empty($info->gender ))
@@ -366,6 +384,27 @@
                                 Please Select in the Gender
                               </div>
                             </div>
+                            <div class="form-group col-md-3 col-12">
+                                  @if($user->is_admin == 1)
+                                    <input 
+                                      type="text" 
+                                      name="marital_status" 
+                                      id="marital_status" 
+                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      value="{{ $info->marital_status }}" 
+                                    >
+                                  @else
+                                    <input 
+                                      type="text" 
+                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      value="{{ $info->marital_status }}" 
+                                    >
+                                  @endif
+                                <label>Civil Status</label>
+                                <div class="invalid-feedback">
+                                  Please fill in the Age
+                                </div>
+                            </div>
                           </div>
                       </div>
 
@@ -375,26 +414,25 @@
                       <div class="card-body">
                           <div class="row">
                             <div class="form-group col-md-6 col-12">
-                              
                               @if($user->is_admin == 1)
-                                <select name="position" id="position" class="form-control">
-                                    <option value="{{ $info->position }}">{{ $info->position }}</option>
+                                <select name="designation" id="designation" class="form-control">
+                                    <option value="{{ $info->designation }}">{{ $info->designation }}</option>
                                     @foreach($opt as $op)
-                                      @if($op->options != $info->position && $op->type == 2)
+                                      @if($op->options != $info->designation && $op->type == 4)
                                         <option value="{{ $op->options }}">{{ $op->options }}</option>
                                       @endif
                                     @endforeach
                                 </select>
-                                <label>Position</label>
+                                <label>Employee Designation</label>
                                 <div class="invalid-feedback">
-                                  Please fill in the Employee Position
+                                  Please fill in the Employee designation
                                 </div>
                               @else
                                 @if($op->type == 2)  
                                   <input 
                                     type="text"
                                     class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                    value="{{ $info->position }}"
+                                    value="{{ $info->designation }}"
                                   >
                                 @else
                                   <input 
@@ -406,29 +444,94 @@
                                 <label>Position</label>
                               @endif
                               
-                            </div>                   
+                            </div>
+
                             <div class="form-group col-md-6 col-12">
-                              
                               @if($user->is_admin == 1)
-                                <select name="employement_status" id="employement_status" class="form-control">
-                                    
-                                    <option value="{{ $info->employement_status }}">{{ $info->employement_status }}</option>
+                                <select name="type_of_contract" id="type_of_contract" class="form-control">
+                                    <option value="{{ $info->type_of_contract }}">{{ $info->type_of_contract }}</option>
                                     @foreach($opt as $op)
-                                      @if($op->options != $info->employement_status && $op->type == 1)
+                                      @if($op->options != $info->type_of_contract && $op->type == 5)
                                         <option value="{{ $op->options }}">{{ $op->options }}</option>
                                       @endif
                                     @endforeach
                                 </select>
-                                <label>Employment Status</label>
+                                <label>Type of Contract</label>
                                 <div class="invalid-feedback">
-                                  Please select employee status
+                                  Please fill in the Employee Type of Contracts
+                                </div>
+                              @else
+                                @if($op->type == 2)  
+                                  <input 
+                                    type="text"
+                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    value="{{ $info->type_of_contract }}"
+                                  >
+                                @else
+                                  <input 
+                                    type="text"
+                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    value="Need Update"
+                                  >
+                                @endif
+                                <label>Type of Contract</label>
+                              @endif
+                              
+                            </div>  
+
+                            <div class="form-group col-md-6 col-12">
+                              
+                              @if($user->is_admin == 1)
+                                <select name="contracts" id="contracts" class="form-control">
+                                    <option value="{{ $info->contracts }}">{{ $info->contracts }}</option>
+                                    @foreach($opt as $op)
+                                      @if($op->options != $info->contracts && $op->type == 2)
+                                        <option value="{{ $op->options }}">{{ $op->options }}</option>
+                                      @endif
+                                    @endforeach
+                                </select>
+                                <label>Contracts</label>
+                                <div class="invalid-feedback">
+                                  Please fill in the Employee Contracts
+                                </div>
+                              @else
+                                @if($op->type == 2)  
+                                  <input 
+                                    type="text"
+                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    value="{{ $info->contracts }}"
+                                  >
+                                @else
+                                  <input 
+                                    type="text"
+                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    value="Need Update"
+                                  >
+                                @endif
+                                <label>Contracts</label>
+                              @endif
+                              
+                            </div>                   
+                            <div class="form-group col-md-6 col-12">
+                              
+                              @if($user->is_admin == 1)
+                                <select name="contract_status" id="contract_status" class="form-control">
+                                    
+                                    <option value="{{ $info->contract_status }}">{{ $info->contract_status }}</option>
+                                    <option value="Daily"> Daily</option>
+                                    <option value="Monthly"> Monthly</option>
+                                    <option value="Fixed"> Fixed</option>
+                                </select>
+                                <label>Contract Status</label>
+                                <div class="invalid-feedback">
+                                  Please select contract status
                                 </div>
                               @else
                                 @if($op->type == 1)  
                                   <input 
                                     type="text"
                                     class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                    value="{{ $info->employement_status }}" 
+                                    value="{{ $info->contract_status }}" 
                                   >
                                 @else
                                   <input 
@@ -437,13 +540,13 @@
                                     value="Need Update" 
                                   >
                                 @endif
-                                <label>Employment Status</label>
+                                <label>Contract Status</label>
                               @endif
                             </div>
                           </div>
 
                           <div class="row">
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-4 col-12">
                               
                               @if($user->is_admin == 1)
                                 <input 
@@ -466,25 +569,49 @@
                                 Please fill in the Date Hired
                               </div>
                             </div>                   
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-4 col-12">
                               
                               @if($user->is_admin == 1)
                                 <input 
                                   type="date" 
-                                  name="date_end"
-                                  id="date_end"
+                                  name="proby_extension"
+                                  id="proby_extension"
                                   class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                  value="{{ Carbon\Carbon::parse($info->date_end)->format('Y-m-d') }}" 
+                                  value="{{ Carbon\Carbon::parse($info->proby_extension)->format('Y-m-d') }}" 
                                   required=""
                                 >
                               @else 
                                 <input 
                                   type="text"
                                   class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                  value="{{ Carbon\Carbon::parse($info->date_end)->format('F m, Y') }}" 
+                                  value="{{ Carbon\Carbon::parse($info->proby_extension)->format('F m, Y') }}" 
                                 >
                               @endif
-                              <label>End Contract Date</label>
+                              <label>Probitionary Extension</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Status
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-4 col-12">
+                              
+                              @if($user->is_admin == 1)
+                                <input 
+                                  type="date" 
+                                  name="regular_date"
+                                  id="regular_date"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->regular_date)->format('Y-m-d') }}" 
+                                  required=""
+                                >
+                              @else 
+                                <input 
+                                  type="text"
+                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  value="{{ Carbon\Carbon::parse($info->regular_date)->format('F m, Y') }}" 
+                                >
+                              @endif
+                              <label>Regularization Date</label>
                               <div class="invalid-feedback">
                                 Please fill in the Status
                               </div>
@@ -492,8 +619,8 @@
                           </div>
 
                           <div class="row">
+
                             <div class="form-group col-12">
-                              
                               <input 
                                 type="text" 
                                 name="pay_slip_link" 
@@ -507,6 +634,141 @@
                                 Please fill in the Payslip URL
                               </div>
                             </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="employee_id" 
+                                id="employee_id" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->employee_id }}" 
+                                required=""
+                              >
+                              <label>Employee ID no.</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Payslip URL
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="account_number" 
+                                id="account_number" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->account_number }}" 
+                                required=""
+                              >
+                              <label>Account No.</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Payslip URL
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="TIN" 
+                                id="TIN" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->TIN }}" 
+                                required=""
+                              >
+                              <label>TIN No.</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Payslip URL
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="philhealth" 
+                                id="philhealth" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->philhealth }}" 
+                                required=""
+                              >
+                              <label>PhilHealth No.</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Payslip URL
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="sss" 
+                                id="sss" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->sss }}" 
+                                required=""
+                              >
+                              <label>SSS No.</label>
+                              <div class="invalid-feedback">
+                                Please fill in SSS
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="pagibig" 
+                                id="pagibig" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->pagibig }}" 
+                                required=""
+                              >
+                              <label>Pag-Ibig No.</label>
+                              <div class="invalid-feedback">
+                                Please fill in Pag-Ibig
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="hmo" 
+                                id="hmo" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->hmo }}" 
+                                required=""
+                              >
+                              <label>HMO</label>
+                              <div class="invalid-feedback">
+                                Please fill in Pag-Ibig
+                              </div>
+                            </div>
+
+                            <div class="form-group col-md-3 col-12">
+                              <input 
+                                type="text" 
+                                name="sil_entitlement" 
+                                id="sil_entitlement" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->sil_entitlement }}" 
+                                required=""
+                              >
+                              <label>SIL Entitlement</label>
+                              <div class="invalid-feedback">
+                                Please fill in Pag-Ibig
+                              </div>
+                            </div>
+                            <div class="form-group col-12">
+                              <input 
+                                type="text" 
+                                name="notes" 
+                                id="notes" 
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->notes }}" 
+                                required=""
+                              >
+                              <label>Notes</label>
+                              <div class="invalid-feedback">
+                                Please fill in Pag-Ibig
+                              </div>
+                            </div>
+
                           </div>
                       </div>
                     @if($user->is_admin == 1 || $info->update_request == 1)
@@ -515,7 +777,7 @@
                       </div>
                       <div class="card-body">
                           <div class="row">
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-4 col-12">
                               
                               <input 
                                 type="text" 
@@ -530,7 +792,7 @@
                                 Please fill in the Personal Email
                               </div>
                             </div>                   
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-4 col-12">
                               
                               <input 
                                 type="text"
@@ -544,25 +806,7 @@
                                 Please fill in the Company Email
                               </div>
                             </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="form-group col-md-6 col-12">
-                              
-                              <input 
-                                type="text" 
-                                name="phone_no" 
-                                id="phone_no" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ $info->phone_no }}" 
-                              >
-                              <label>Phone No</label>
-                              <div class="invalid-feedback">
-                                Please fill in the Phone No
-                              </div>
-                            </div>                   
-                            <div class="form-group col-md-6 col-12">
-                              
+                            <div class="form-group col-md-4 col-12">
                               <input 
                                 type="text" 
                                 name="cel_no"
@@ -576,8 +820,11 @@
                                 Please fill in the Cellphone No
                               </div>
                             </div>
+                          </div>
+
+                          <div class="row">
+                            
                             <div class="form-group col-12">
-                              
                               <input 
                                 type="text" 
                                 name="address_1"
@@ -591,20 +838,6 @@
                                 Please fill in the Current Address
                               </div>
                             </div>
-                            <div class="form-group col-12">
-                              
-                              <input 
-                                type="text" 
-                                name="address_2"
-                                id="address_2"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                value="{{ $info->address_2 }}" 
-                              >
-                              <label>Address</label>
-                              <div class="invalid-feedback">
-                                Please fill in the Address
-                              </div>
-                            </div>
                           </div>
                       </div>
                       <div class="card-header">
@@ -612,7 +845,7 @@
                       </div>
                       <div class="card-body">
                         <div class="row">
-                          <div class="form-group col-md-6 col-12">
+                          <div class="form-group col-md-4 col-12">
                               
                               <input 
                                 type="text" 
@@ -622,12 +855,12 @@
                                 value="{{ $info->emergency_name }}" 
                                 required=""
                               >
-                              <label>Name</label>
+                              <label>Name 1</label>
                               <div class="invalid-feedback">
                                 Please fill in the Name
                               </div>
                           </div>
-                          <div class="form-group col-md-6 col-12">
+                          <div class="form-group col-md-4 col-12">
                               
                               <input 
                                 type="text" 
@@ -637,12 +870,12 @@
                                 value="{{ $info->emergency_relation }}" 
                                 required=""
                               >
-                              <label>Relation</label>
+                              <label>Relation 1</label>
                               <div class="invalid-feedback">
                                 Please fill in the Name
                               </div>
                           </div>
-                          <div class="form-group col-md-6 col-12">
+                          <div class="form-group col-md-4 col-12">
                               
                               <input 
                                 type="text" 
@@ -652,11 +885,61 @@
                                 value="{{ $info->emergency_contact }}" 
                                 required=""
                               >
-                              <label>Emergency Contact</label>
+                              <label>Contact 1</label>
                               <div class="invalid-feedback">
                                 Please fill in the Name
                               </div>
                           </div>
+
+                          <div class="form-group col-md-4 col-12">
+                              
+                              <input 
+                                type="text" 
+                                name="emergency_name2"
+                                id="emergency_name2"
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->emergency_name2 }}" 
+                                required=""
+                              >
+                              <label>Name 2</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Name
+                              </div>
+                          </div>
+
+                          <div class="form-group col-md-4 col-12">
+                              
+                              <input 
+                                type="text" 
+                                name="emergency_relation2"
+                                id="emergency_relation2"
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->emergency_relation2 }}" 
+                                required=""
+                              >
+                              <label>Relation 2</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Name
+                              </div>
+                          </div>
+
+                          <div class="form-group col-md-4 col-12">
+                              
+                              <input 
+                                type="text" 
+                                name="emergency_contact2"
+                                id="emergency_contact2"
+                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                value="{{ $info->emergency_contact2 }}" 
+                                required=""
+                              >
+                              <label>Relation 2</label>
+                              <div class="invalid-feedback">
+                                Please fill in the Name
+                              </div>
+                          </div>
+
+
                         </div>
                       </div>
                       @endif
