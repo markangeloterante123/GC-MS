@@ -36,11 +36,7 @@ class CreateFileRecordsTable extends Migration
             $table->string('emergency_relation')->nullable();
             $table->string('emergency_contact')->nullable();
             $table->string('work_email')->nullable();
-            // $table->integer('level');
-            // $table->string('team_id')->nullable();
-            // $table->string('404_records_link');
             $table->string('pay_slip_link');
-            // $table->double('salary');
             $table->integer('update_request');
             $table->string('date_hired');
             $table->string('date_end');
@@ -48,6 +44,54 @@ class CreateFileRecordsTable extends Migration
             $table->timestamps();
         });
     }
+
+    /** 
+     * FILE 201 Records
+     * 
+     * Employee ID   X
+     * Last Name   /
+     * First Name /
+     * Middle Name / 
+     * Designation X
+     * Position / $user
+     * Type of Contract X
+     * Contracts /
+     * Notes X
+     * Date Hired
+     * Proby Extension
+     * Regularization Date
+     * Employement Status
+     * Contract Status
+     * No.of Service
+     * 5 SIL Entitlement
+     * Monthly Basic Salary
+     * Daily Basic Salary
+     * Hourly Rate
+     * OT Rate
+     * Daily Total
+     * Transpo Allowance
+     * Birthday
+     * Age
+     * Gender
+     * Civil Status
+     * Mobile No
+     * Email Address
+     * Personal Address
+     * Account Number
+     * TIN
+     * Philhealth
+     * SSS
+     * Pagibig
+     * HMO
+     * Home Address
+     * Contact Person in case of Emergency 1
+     * Relationship 1
+     * Contact No.1
+     * Contact Person in case of Emergency 2
+     * Relationship 2
+     * Contact No.2
+     * 
+    */
 
     /**
      * Reverse the migrations.

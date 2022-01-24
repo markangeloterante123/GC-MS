@@ -23,7 +23,7 @@ trait WithDataTable {
                             'export' => route('export'),
                             'export_text' => 'Export',
                             'import_modal'=> '#uploadCSVUser',
-                            'import_text'=>'Import'
+                            'import_text'=>'Import',
                         ]
                     ])
                 ];

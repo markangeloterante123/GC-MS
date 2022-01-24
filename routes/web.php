@@ -31,6 +31,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/user/new', "pages.user.user-new")->name('user.new');
     Route::view('/user/edit/{userId}', "pages.user.user-edit")->name('user.edit');
 
+    // Client Information
+    Route::view('/client', "pages.client.client-data")->name('client');
+
     //View Profile
     Route::get('/user/info', [ UserController::class, "user_file" ])->name('user.info');
     Route::get('/user/information/{userId}', [ UserController::class, "userInformations" ])->name('user.information');

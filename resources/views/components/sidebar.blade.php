@@ -36,7 +36,7 @@ $links = [
                 ]
             ],
             [
-                "section_text" => "Setting",
+                "section_text" => "Employee Setting",
                 "icon"=>"fas fa-cogs",
                 "section_list" => [
                     ["href" => "setting.options", "text" => "Add Options"],
@@ -45,6 +45,21 @@ $links = [
         ],
         "access"=>"1",
         "text" => "User",
+        "is_multi" => true,
+    ],
+    [
+        "href" => [
+            [
+                
+                "section_text" => "Clients Information",
+                "icon"=>"fas fa-folder-open",
+                "section_list" => [
+                    ["href" => "client", "text" => "Clients"]
+                ]
+            ]
+        ],
+        "access"=>"0",
+        "text" => "Client",
         "is_multi" => true,
     ],    
 ];
@@ -60,7 +75,7 @@ $navigation_links = array_to_object($links);
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('dashboard') }}">
-                <img class="d-inline-block" width="32px" height="30.61px" src="{{ asset('img/logo-1.png') }}" alt="">
+                <img class="d-inline-block" width="32px" height="30.61px" src="{{ asset('img/logo-1.png') }}" alt="Logo">
             </a>
         </div>
         @foreach ($navigation_links as $link)

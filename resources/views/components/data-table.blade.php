@@ -25,8 +25,8 @@
                 </select>
             </div>
 
-            <div class="col">
-                <input wire:model="search" class="form-control" type="text" placeholder="Search...">
+            <div class="col search-div form-group">
+                <input wire:model="search" class="form-control search-input" type="text" placeholder="Search...">
             </div>
         </div>
 

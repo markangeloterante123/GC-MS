@@ -127,21 +127,18 @@
           ClassicEditor
           .create( document.querySelector( '#notes' ) )
           .catch( error => {
-          console.error( error );
           } );
         </script>
         <script>
           ClassicEditor
           .create( document.querySelector( '#description-form' ) )
           .catch( error => {
-          console.error( error );
           } );
         </script>
         <script>
           ClassicEditor
           .create( document.querySelector( '#description-form2' ) )
           .catch( error => {
-          console.error( error );
           } );
         </script>
         

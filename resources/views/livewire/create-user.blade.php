@@ -10,27 +10,30 @@
 
         <x-slot name="form">
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="name" value="{{ __('Name') }}" />
+                
                 <small></small>
                 <x-jet-input id="name" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.name" />
+                <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input-error for="user.name" class="mt-2" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
+                
                 <x-jet-input id="email" type="text" class="mt-1 block w-full form-control shadow-none" wire:model.defer="user.email" />
                 <x-jet-input-error for="user.email" class="mt-2" />
+                <x-jet-label for="email" value="{{ __('Email') }}" />
             </div>
             
             @if ($action == "createUser")
             
             <div class="form-group col-span-6 sm:col-span-5">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                
                 <small></small>
                 <select name="is_admin" id="is_admin" class="mt-1 block w-full form-control shadow-none"  wire:model.defer="user.is_admin">
                     <option value="0">User Account</option>
                     <option value="1">Admin Account</option>
                 </select>
+                <x-jet-label for="is_admin" value="{{ __('Account Type') }}" />
             </div>
 
             <div class="form-group col-span-6 sm:col-span-5">

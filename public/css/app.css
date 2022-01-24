@@ -365,6 +365,14 @@ textarea.form-control {
     color:#fff;
 }
 
+.search-div {
+    display: flex;
+    justify-content: flex-end;
+}
+.search-input {
+    max-width:300px;
+}
+
 @media only screen and (max-width:992px){
     .card-hero  {
         max-width: 500px !important;

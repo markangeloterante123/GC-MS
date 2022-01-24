@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\FileRecord;
 use App\Models\Options;
 use App\Models\SalaryHistory;
+use App\Models\ClientInformation;
 use Auth;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
