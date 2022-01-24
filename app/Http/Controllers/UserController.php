@@ -44,6 +44,7 @@ class UserController extends Controller
                     ->where('users.id', "=", $id)
               		->get();
         return view('pages.user.user-profile-information', compact('data','userId','opt','history'));
+        
     }
 
     public function user_update(Request $request, $id){

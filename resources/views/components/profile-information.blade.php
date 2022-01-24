@@ -386,13 +386,14 @@
                             </div>
                             <div class="form-group col-md-3 col-12">
                                   @if($user->is_admin == 1)
-                                    <input 
-                                      type="text" 
-                                      name="marital_status" 
-                                      id="marital_status" 
-                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                      value="{{ $info->marital_status }}" 
-                                    >
+                                    <select name="marital_status" id="marital_status" class="form-control">
+                                      <option value="{{ $info->marital_status }}">{{ $info->marital_status }}</option>
+                                      <option value="Single">Single</option>
+                                      <option value="Married">Married</option>
+                                      <option value="Widowed">Widowed</option>
+                                      <option value="Separated">Separated</option>
+                                      <option value="Devorced">Devorced</option>
+                                    </select>
                                   @else
                                     <input 
                                       type="text" 
@@ -402,7 +403,7 @@
                                   @endif
                                 <label>Civil Status</label>
                                 <div class="invalid-feedback">
-                                  Please fill in the Age
+                                  Please fill in up Civil Status
                                 </div>
                             </div>
                           </div>
