@@ -520,7 +520,7 @@
                                     <option value="{{ $info->contract_status }}">{{ $info->contract_status }}</option>
                                     <option value="Daily"> Daily</option>
                                     <option value="Monthly"> Monthly</option>
-                                    <option value="Fixed"> Fixed</option>
+                                    <option value="Fixed"> Fixeds</option>
                                 </select>
                                 <label>Contract Status</label>
                                 <div class="invalid-feedback">
