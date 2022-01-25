@@ -61,7 +61,23 @@ $links = [
         "access"=>"0",
         "text" => "Client",
         "is_multi" => true,
-    ],    
+    ],
+    [
+        "href" => [
+            [
+                
+                "section_text" => "Guidelines",
+                "icon"=>"fas fa-check-square",
+                "section_list" => [
+                    ["href" => "reprimand.detail", "text" => "Code of Conduct"],
+                    ["href" => "memo.details", "text" => "Memo"]
+                ]
+            ]
+        ],
+        "access"=>"0",
+        "text" => "MEMO",
+        "is_multi" => true,
+    ],     
 ];
 $user = auth()->user();
 $navigation_links = array_to_object($links);

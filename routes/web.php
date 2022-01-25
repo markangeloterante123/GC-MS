@@ -5,6 +5,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OptionsController;
 use App\Http\Controllers\SalaryHistoryController;
 use App\Http\Controllers\GoogleSocialiteController;
+use App\Http\Controllers\ReprimandUserController;
+use App\Http\Controllers\ReprimandDetailController;
+use App\Http\Controllers\MemoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +56,24 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //salary informations
     Route::put('/setting/salary/update/{id}', [ SalaryHistoryController::class, "store" ])->name('setting.salary.update');
     Route::put('/setting/salary/edit/{id}', [ SalaryHistoryController::class, "edit" ])->name('setting.salary.edit');
+
+    // Reprimands Details
+    Route::get('/reprimand/details', [ ReprimandDetailController::class, "index" ])->name('reprimand.detail');
+    Route::put('/reprimand/add/{author}',[ ReprimandDetailController::class, "create" ])->name('reprimand.add');
+    Route::delete('/reprimand/delete/{id}', [ ReprimandDetailController::class, "destroy" ])->name('reprimand.delete');
+    Route::get('/reprimand/edit/{id}', [ ReprimandDetailController::class, "edit" ])->name('reprimand.edit');
+    Route::put('/reprimand/update/{id}', [ ReprimandDetailController::class, "update" ])->name('reprimand.update');
+    
+    //Send reprimands to its users
+    Route::get('/send/reprimand/{id}', [ ReprimandUserController::class, "index"])->name('send.reprimand');
+    Route::put('/send/user/reprimand/{userId}',[ ReprimandUserController::class, "create"] )->name('send.user.reprimand');
+
+    // Memo Notes
+    Route::get('/memo/details', [ MemoController::class, "index" ])->name('memo.details');
+    Route::put('/memo/add/{author}', [ MemoController::class, "create" ])->name('memo.add');
+    Route::delete('/memo/delete/{id}', [ MemoController::class, "destroy" ])->name('memo.delete');
+    Route::get('/memo/edit/{id}', [ MemoController::class, "edit" ])->name('memo.edit');
+    Route::put('/memo/update/{id}', [ MemoController::class, "update" ])->name('memo.update');
 
     //Import and Exporting User information
     Route::get('export', [UserController::class, "export"])->name("export");

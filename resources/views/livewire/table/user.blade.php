@@ -54,7 +54,7 @@
                             </a>
                         @endif
                         
-                        <a role="button" href="#" class="mr-3 tool"><i class="fa fa-16px fa-sticky-note text-orange-500"></i>
+                        <a role="button" href="{{ url('/send/reprimand/'.$user->id) }}" class="mr-3 tool"><i class="fa fa-16px fa-sticky-note text-orange-500"></i>
                             <span class="tooltiptext bg-warning">Send Reprimand</span>
                         </a>
                         @if($user->is_admin == 0)

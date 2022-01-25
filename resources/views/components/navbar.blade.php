@@ -1,5 +1,5 @@
 @php
-$user = auth()->user();
+    $user = auth()->user();
 @endphp
 
 <div class="navbar-bg"></div>
