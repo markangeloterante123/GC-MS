@@ -43,9 +43,32 @@ class ReprimandUserController extends Controller
             'date_given'=>$request->date_given,
             'no_of_offense'=>$request->no_of_offense,
             'detail_reports'=>$request->detail_reports,
-            'status'=>'Delayed',
+            'status'=>'Require Explanation',
         ]);
         return redirect()->back()->with('status','File Created Successfully');
+    }
+
+
+    // Resolving the cased of reprimand
+    public function actions(Request $request, $id)
+    {
+        $data = ReprimandUser::find($id);
+        $data->status = 'Resolved';
+        $data->update($request->all());
+        return redirect()->back()->with('status','Updated Successfully');
+    }
+
+    // Get all the records of reprimand
+    public function all_records()
+    {
+        $active = User::rightjoin('reprimand_users', 'reprimand_users.user_id', '=', 'users.id')
+                    ->where('reprimand_users.written_explanation', "=", NULL)
+              		->get();
+        $answer = User::rightjoin('reprimand_users', 'reprimand_users.user_id', '=', 'users.id')
+                    ->where('reprimand_users.written_explanation', "!=", NULL)
+                    ->where('reprimand_users.actions_taken', "=", NULL)
+              		->get();
+        return view('pages.reprimand.reprimands_records', compact('active', 'answer'));
     }
 
     /**
@@ -57,6 +80,15 @@ class ReprimandUserController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function explination(Request $request, $id){
+            $data = ReprimandUser::find($id);
+            $data->written_explanation = $request->written_explanation;
+            $data->explanation_date = \Carbon\Carbon::now();
+            $data->status = 'Answered';
+            $data->update($request->all());
+            return redirect()->back()->with('status','Updated Successfully');
     }
 
     /**

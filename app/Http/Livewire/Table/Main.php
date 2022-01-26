@@ -52,8 +52,7 @@ class Main extends Component
 
     public function render()
     {
-        $data = $this->get_pagination_data();
-
+        $data = $this->get_pagination_data(); 
         return view($data['view'], $data);
     }
 }

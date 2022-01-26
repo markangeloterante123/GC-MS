@@ -55,6 +55,54 @@
                   </div>
                 </div>
                 @endforeach
+
+                <!-- reprimand records -->
+                  <div class="card">
+                    <div class="card-header">
+                      <h4><i class="fa fa-times-circle "></i> Reprimand</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                          <div class="card">
+                            <div class="card-header" role="tab" id="headingTree">
+                                <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseRec" aria-expanded="true"
+                                              aria-controls="collapseRec">
+                                <h5 class="mb-0 " style="color:#02b075;">
+                                    Reprimand Records<i class="fas fa-angle-down rotate-icon"></i>
+                                </h5>
+                                </a>
+                            </div>
+                            <div id="collapseRec" class="collapse" role="tabpanel" aria-labelledby="headingTree"
+                                          data-parent="#accordionEx">
+                                <div class="card-body">
+                                    <div class="row">
+                                      @foreach ($reprimand as $repri)
+                                        <div class="accordion-wrapper">
+                                            <button class="toggles" >
+                                              {{ $repri->status }} ( {{ $repri->type_of_offense }} )
+                                              <i class="fas fa-plus icon"></i>
+                                            </button>
+                                            <div class="content">
+                                              <h3>Date Issued: <span>{{ Carbon\Carbon::parse($repri->date_given)->format('M. d, Y') }}</span></h3>
+                                              <h3>Offense: <span>{{ $repri->no_of_offense }}</span></h3>
+                                              <h3>Issued By: <span>{{ $repri->issue_by }}</span> </h3>
+                                              <span>Click the link to the</span>
+                                              <a href="{{ url('send/reprimand/'.$user->id) }}"> View Details </a>
+                                            </div>
+                                        </div>
+                                      @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- End here -->
+                
+               
                 <!-- User Salary Informations -->
                 <div class="card">
                   <div class="card-header">
@@ -271,7 +319,7 @@
                                 type="text" 
                                 name="first_name" 
                                 id="first_name" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->first_name }}" 
                                 required=""
                               >
@@ -289,7 +337,7 @@
                                 type="text"
                                 name="last_name"
                                 id="last_name"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->last_name }}"
                                 required=""
                               >
@@ -304,7 +352,7 @@
                                 type="text" 
                                 name="middle_name"
                                 id="middle_name"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->middle_name }}" 
                               >
                               <label>Middle Name</label>
@@ -321,13 +369,13 @@
                                   type="date" 
                                   name="birthday" 
                                   id="birthday" 
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->birthday)->format('Y-m-d') }}" 
                                 >
                               @else
                                 <input 
                                   type="text" 
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->birthday)->format('F d, Y') }}" 
                                 >
                               @endif
@@ -342,14 +390,14 @@
                                       type="text" 
                                       name="age" 
                                       id="age" 
-                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                       value="{{ $info->age }}" 
                                       required=""
                                     >
                                   @else
                                     <input 
                                       type="text" 
-                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                       value="{{ $info->age }}" 
                                     >
                                   @endif
@@ -376,7 +424,7 @@
                                 @else
                                   <input 
                                     type="text" 
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="{{ $info->gender }}" 
                                   >
                                 @endif
@@ -398,7 +446,7 @@
                                   @else
                                     <input 
                                       type="text" 
-                                      class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                       value="{{ $info->marital_status }}" 
                                     >
                                   @endif
@@ -430,18 +478,18 @@
                                   Please fill in the Employee designation
                                 </div>
                               @else
-                                @if($op->type == 2)  
-                                  <input 
-                                    type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                    value="{{ $info->designation }}"
-                                  >
-                                @else
-                                  <input 
-                                    type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
-                                    value="Need Update"
-                                  >
+                                @if($info->designation)  
+                                    <input 
+                                      type="text"
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
+                                      value="{{ $info->designation }}"
+                                    >
+                                  @else
+                                    <input 
+                                      type="text"
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
+                                      value="Need Update"
+                                    >
                                 @endif
                                 <label>Position</label>
                               @endif
@@ -463,16 +511,16 @@
                                   Please fill in the Employee Type of Contracts
                                 </div>
                               @else
-                                @if($op->type == 2)  
+                                @if($info->type_of_contract)  
                                   <input 
                                     type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="{{ $info->type_of_contract }}"
                                   >
                                 @else
                                   <input 
                                     type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="Need Update"
                                   >
                                 @endif
@@ -497,16 +545,16 @@
                                   Please fill in the Employee Contracts
                                 </div>
                               @else
-                                @if($op->type == 2)  
+                                @if($info->contracts)  
                                   <input 
                                     type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="{{ $info->contracts }}"
                                   >
                                 @else
                                   <input 
                                     type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="Need Update"
                                   >
                                 @endif
@@ -528,16 +576,16 @@
                                   Please select contract status
                                 </div>
                               @else
-                                @if($op->type == 1)  
+                                @if($info->contract_status)  
                                   <input 
                                     type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="{{ $info->contract_status }}" 
                                   >
                                 @else
                                   <input 
                                     type="text"
-                                    class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                     value="Need Update" 
                                   >
                                 @endif
@@ -554,14 +602,14 @@
                                   type="date" 
                                   name="date_hired" 
                                   id="date_hired" 
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->date_hired)->format('Y-m-d') }}" 
                                   required=""
                                 >
                               @else 
                                 <input 
                                   type="text"
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->date_hired)->format('F m, Y') }}" 
                                 >
                               @endif
@@ -577,14 +625,14 @@
                                   type="date" 
                                   name="proby_extension"
                                   id="proby_extension"
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->proby_extension)->format('Y-m-d') }}" 
                                   required=""
                                 >
                               @else 
                                 <input 
                                   type="text"
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->proby_extension)->format('F m, Y') }}" 
                                 >
                               @endif
@@ -601,14 +649,14 @@
                                   type="date" 
                                   name="regular_date"
                                   id="regular_date"
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->regular_date)->format('Y-m-d') }}" 
                                   required=""
                                 >
                               @else 
                                 <input 
                                   type="text"
-                                  class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                  class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                   value="{{ Carbon\Carbon::parse($info->regular_date)->format('F m, Y') }}" 
                                 >
                               @endif
@@ -626,7 +674,7 @@
                                 type="text" 
                                 name="pay_slip_link" 
                                 id="pay_slip_link" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->pay_slip_link }}" 
                                 required=""
                               >
@@ -641,7 +689,7 @@
                                 type="text" 
                                 name="employee_id" 
                                 id="employee_id" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->employee_id }}" 
                                 required=""
                               >
@@ -656,7 +704,7 @@
                                 type="text" 
                                 name="account_number" 
                                 id="account_number" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->account_number }}" 
                                 required=""
                               >
@@ -671,7 +719,7 @@
                                 type="text" 
                                 name="TIN" 
                                 id="TIN" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->TIN }}" 
                                 required=""
                               >
@@ -686,7 +734,7 @@
                                 type="text" 
                                 name="philhealth" 
                                 id="philhealth" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->philhealth }}" 
                                 required=""
                               >
@@ -701,7 +749,7 @@
                                 type="text" 
                                 name="sss" 
                                 id="sss" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->sss }}" 
                                 required=""
                               >
@@ -716,7 +764,7 @@
                                 type="text" 
                                 name="pagibig" 
                                 id="pagibig" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->pagibig }}" 
                                 required=""
                               >
@@ -731,7 +779,7 @@
                                 type="text" 
                                 name="hmo" 
                                 id="hmo" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->hmo }}" 
                                 required=""
                               >
@@ -746,7 +794,7 @@
                                 type="text" 
                                 name="sil_entitlement" 
                                 id="sil_entitlement" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->sil_entitlement }}" 
                                 required=""
                               >
@@ -755,12 +803,13 @@
                                 Please fill in sil Entitlement
                               </div>
                             </div>
+
                             <div class="form-group col-12">
                               <input 
                                 type="text" 
                                 name="notes" 
-                                id="notes" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                id="note" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->notes }}" 
                                 required=""
                               >
@@ -784,7 +833,7 @@
                                 type="text" 
                                 name="email" 
                                 id="email" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->email }}" 
                                 required=""
                               >
@@ -799,7 +848,7 @@
                                 type="text"
                                 name="work_email"
                                 id="work_email" 
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->work_email }}" 
                                 required=""
                               >
@@ -813,7 +862,7 @@
                                 type="text" 
                                 name="cel_no"
                                 id="cel_no"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->cel_no }}" 
                                 required=""
                               >
@@ -831,7 +880,7 @@
                                 type="text" 
                                 name="address_1"
                                 id="address_1"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->address_1 }}" 
                                 required=""
                               >
@@ -853,7 +902,7 @@
                                 type="text" 
                                 name="emergency_name"
                                 id="emergency_name"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_name }}" 
                                 required=""
                               >
@@ -868,7 +917,7 @@
                                 type="text" 
                                 name="emergency_relation"
                                 id="emergency_relation"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_relation }}" 
                                 required=""
                               >
@@ -883,7 +932,7 @@
                                 type="text" 
                                 name="emergency_contact"
                                 id="emergency_contact"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_contact }}" 
                                 required=""
                               >
@@ -899,7 +948,7 @@
                                 type="text" 
                                 name="emergency_name2"
                                 id="emergency_name2"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_name2 }}" 
                                 required=""
                               >
@@ -915,7 +964,7 @@
                                 type="text" 
                                 name="emergency_relation2"
                                 id="emergency_relation2"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_relation2 }}" 
                                 required=""
                               >
@@ -931,7 +980,7 @@
                                 type="text" 
                                 name="emergency_contact2"
                                 id="emergency_contact2"
-                                class="form-control {{ $user->is_admin == 1 || $info->update_request == 0 ? 'input-disable':''}}" 
+                                class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
                                 value="{{ $info->emergency_contact2 }}" 
                                 required=""
                               >

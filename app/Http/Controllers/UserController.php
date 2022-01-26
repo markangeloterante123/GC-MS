@@ -25,25 +25,31 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $userId = $id;
         $opt = Options::all();
+        $reprimand = User::leftjoin('reprimand_users', 'reprimand_users.user_id', '=', 'users.id')
+                    ->where('reprimand_users.user_id', "=", $id)
+                    ->get();
         $history = SalaryHistory::where('user_id', "=", $id)
             ->orderBy('id', 'desc')
             ->get();
         $data = User::leftjoin('file_records', 'file_records.user_id', '=', 'users.id')
                     ->where('users.id', "=", $id)
               		->get();
-        return view('pages.user.user-profile-information', compact('data','userId','opt','history'));
+        return view('pages.user.user-profile-information', compact('data', 'userId', 'opt', 'history', 'reprimand'));
     }
 
     public function userInformations($id){
         $userId = $id;
         $opt = Options::all();
+        $reprimand = User::leftjoin('reprimand_users', 'reprimand_users.user_id', '=', 'users.id')
+                    ->where('reprimand_users.user_id', "=", $id)
+                    ->get();
         $history = SalaryHistory::where('user_id', "=", $id)
             ->orderBy('id', 'desc')
             ->get();
         $data = User::leftjoin('file_records', 'file_records.user_id', '=', 'users.id')
                     ->where('users.id', "=", $id)
               		->get();
-        return view('pages.user.user-profile-information', compact('data','userId','opt','history'));
+        return view('pages.user.user-profile-information', compact('data','userId','opt','history', 'reprimand'));
         
     }
 

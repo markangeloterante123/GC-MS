@@ -7,8 +7,11 @@
             <a data-toggle="modal" data-target="{{ $data->href->import_modal }}" class="ml-2 btn btn-info shadow-none">
                 <span class="fas fa-file-import"></span> {{ $data->href->import_text }}
             </a>
-            <a href="{{ $data->href->export }}" class="ml-2 btn btn-success shadow-none">
+            <a href="{{ $data->href->export }}" class="ml-2 btn btn-warning shadow-none">
                 <span class="fas fa-file-export"></span> {{ $data->href->export_text }}
+            </a>
+            <a href="#" class="ml-2 btn btn-success shadow-none">
+                <span class="fas fa-table"></span> View Full Data Table
             </a>
         </div>
 

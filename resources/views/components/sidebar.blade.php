@@ -77,7 +77,24 @@ $links = [
         "access"=>"0",
         "text" => "MEMO",
         "is_multi" => true,
-    ],     
+    ],
+
+    [
+        "href" => [
+            [
+                
+                "section_text" => "Reprimand Records",
+                "icon"=>"fas fa-archive",
+                "section_list" => [
+                    ["href" => "reprimand.records", "text" => "Records"],
+                ]
+            ]
+        ],
+        "access"=>"1",
+        "text" => "RECORDS",
+        "is_multi" => true,
+    ],
+         
 ];
 $user = auth()->user();
 $navigation_links = array_to_object($links);

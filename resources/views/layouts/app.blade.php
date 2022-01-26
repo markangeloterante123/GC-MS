@@ -122,38 +122,7 @@
         <livewire:scripts />
 
         <script src="{{ asset('js/app.js') }}" defer></script>
-
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#notes' ) )
-          .catch( error => {
-          } );
-        </script>
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#description-form' ) )
-          .catch( error => {
-          } );
-        </script>
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#description-form2' ) )
-          .catch( error => {
-          } );
-        </script>
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#description-form3' ) )
-          .catch( error => {
-          } );
-        </script>
-        <script>
-          ClassicEditor
-          .create( document.querySelector( '#description-form4' ) )
-          .catch( error => {
-          } );
-        </script>
-        
+        <script src="{{ asset('js/main.js') }}"></script>
         @isset($script)
             {{ $script }}
         @endisset

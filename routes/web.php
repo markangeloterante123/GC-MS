@@ -38,22 +38,22 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     // Client Information
     Route::view('/client', "pages.client.client-data")->name('client');
 
-    //View Profile
+    // View Profile
     Route::get('/user/info', [ UserController::class, "user_file" ])->name('user.info');
     Route::get('/user/information/{userId}', [ UserController::class, "userInformations" ])->name('user.information');
 
-    //update user information routes
+    // update user information routes
     Route::view('/update/account',"pages.user.user-update-profile" )->name('update.account');
     Route::view('/update/password',"pages.user.user-update-password" )->name('update.password');
     Route::view('/update/setting',"pages.user.user-setting" )->name('update.setting');
     Route::put('/update/user/info/{id}', [ UserController::class, "user_update" ])->name('update.user.info');
 
-    //adding user setting 
+    // adding user setting 
     Route::get('/setting/options', [ OptionsController::class, "index" ])->name('setting.options');
     Route::put('/setting/add/{type}', [ OptionsController::class, "create"])->name('setting.add');
     Route::delete('/setting/remove/{id}', [ OptionsController::class, "destroy" ])->name('setting.remove');
 
-    //salary informations
+    // salary informations
     Route::put('/setting/salary/update/{id}', [ SalaryHistoryController::class, "store" ])->name('setting.salary.update');
     Route::put('/setting/salary/edit/{id}', [ SalaryHistoryController::class, "edit" ])->name('setting.salary.edit');
 
@@ -64,9 +64,14 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/reprimand/edit/{id}', [ ReprimandDetailController::class, "edit" ])->name('reprimand.edit');
     Route::put('/reprimand/update/{id}', [ ReprimandDetailController::class, "update" ])->name('reprimand.update');
     
-    //Send reprimands to its users
+    // Send reprimands to its users
     Route::get('/send/reprimand/{id}', [ ReprimandUserController::class, "index"])->name('send.reprimand');
-    Route::put('/send/user/reprimand/{userId}',[ ReprimandUserController::class, "create"] )->name('send.user.reprimand');
+    Route::put('/send/user/reprimand/{userId}', [ ReprimandUserController::class, "create"] )->name('send.user.reprimand');
+    Route::put('/send/user/explination/{id}', [ ReprimandUserController::class, "explination" ])->name('send.user.explination');
+    Route::put('/send/user/actions/{id}', [ ReprimandUserController::class, "actions" ])->name('send.user.actions');
+
+    // Reprimand all informations
+    Route::get('/reprimand/records', [ ReprimandUserController::class, "all_records" ])->name('reprimand.records');
 
     // Memo Notes
     Route::get('/memo/details', [ MemoController::class, "index" ])->name('memo.details');
@@ -75,7 +80,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/memo/edit/{id}', [ MemoController::class, "edit" ])->name('memo.edit');
     Route::put('/memo/update/{id}', [ MemoController::class, "update" ])->name('memo.update');
 
-    //Import and Exporting User information
+    // Import and Exporting User information
     Route::get('export', [UserController::class, "export"])->name("export");
     Route::post("import", [UserController::class, "import"])->name('import');
 
