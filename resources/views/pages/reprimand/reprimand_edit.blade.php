@@ -50,9 +50,9 @@
                                         </div>
                                     </div>
 
+                                    <label class="label-comment">Offense details</label>
                                     <div class="form-group col-12">
-                                        <label>Offense details</label>
-                                        <textarea name="details" class="form-control" id="details" cols="30" rows="10" required="">
+                                        <textarea name="details" class="form-control" id="details-edit" cols="30" rows="10" required="">
                                             {{ $data->details }}
                                         </textarea>
                                         <div class="invalid-feedback">
@@ -60,11 +60,11 @@
                                         </div>
                                     </div>
 
+                                    <label class="label-comment">No of Offense</label>
                                     <div class="form-group col-12">
-                                        <textarea name="no_of_offense" class="form-control" id="no_of_offense" cols="30" rows="10" required="">
+                                        <textarea name="no_of_offense" class="form-control" id="no_of_offense-edit" cols="30" rows="10" required="">
                                             {{ $data->no_of_offense }}
                                         </textarea>
-                                        <label>No of Offense</label>
                                         <div class="invalid-feedback">
                                             Please fill in no of Offense
                                         </div>
@@ -108,18 +108,18 @@
                                         </div>
                                     </div>
 
+                                    <label class="label-comment">Offense details</label>
                                     <div class="form-group col-12">
-                                        <label>Offense details</label>
-                                        <textarea name="details" class="form-control" id="details" cols="30" rows="10" required="">
+                                        <textarea name="details" class="form-control" id="details-edit-1" cols="30" rows="10" required="">
                                         </textarea>
                                         <div class="invalid-feedback">
                                             Please fill in the Offense details
                                         </div>
                                     </div>
 
+                                    <label class="label-comment">No of Offense</label>
                                     <div class="form-group col-12">
-                                        <label>No of Offense</label>
-                                        <textarea name="no_of_offense" class="form-control" id="no_of_offense" cols="30" rows="10" required="">
+                                        <textarea name="no_of_offense" class="form-control" id="no_of_offense-edit-2" cols="30" rows="10" required="">
                                         </textarea>
                                         <div class="invalid-feedback">
                                             Please fill in no of Offense

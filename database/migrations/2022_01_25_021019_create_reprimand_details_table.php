@@ -16,8 +16,8 @@ class CreateReprimandDetailsTable extends Migration
         Schema::create('reprimand_details', function (Blueprint $table) {
             $table->id();
             $table->string('type_of_offense');
-            $table->string('details');
-            $table->string('no_of_offense');
+            $table->text('details');
+            $table->text('no_of_offense');
             $table->string('author_by');
             $table->timestamps();
         });

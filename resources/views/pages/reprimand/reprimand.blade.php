@@ -22,38 +22,65 @@
     <section class="section">
         <div class="row mt-sm-4">
 
-            <div class="col-md-6 col-12">
+            <div class="{{ $user->is_admin == 1 ? 'col-md-7':'col-12'}} col-12">
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fa fa-info-circle"></i> Code of Conducts Informations </h4>
                     </div>
                     <div class="card-body">
                         @foreach($data as $info)
-                            <div class="card">
-                                <div class="card-header">
-                                    <h1><i class="fa fa-check-square"></i> {{ $info->type_of_offense }}</h1>
-                                </div>
-                                
-                                <div class="card-body">
-                                    <h2>Details</h2>
-                                    <p>{{ $info->details }}</p>
+                                <!-- start here -->
+                                <div class="accordion md-accordion" id="accordionEx{{ $info->id }}" role="tablist" aria-multiselectable="true">
+                                    <div class="card">
+                                        <div class="card-header" role="tab" id="headingTree">
+                                            <a data-toggle="collapse" data-parent="#accordionEx{{ $info->id }}" href="#collapseRec{{ $info->id }}" aria-expanded="true"
+                                                        aria-controls="collapseRec{{ $info->id }}">
+                                            <h3 class="mb-0 " style="color:#02b075;">
+                                            {{ $info->type_of_offense }}<i class="fas fa-angle-down rotate-icon"></i>
+                                            </h3>
+                                            </a>
+                                        </div>
+                                        <div id="collapseRec{{ $info->id }}" class="collapse" role="tabpanel" aria-labelledby="headingTree"
+                                                    data-parent="#accordionEx{{ $info->id }}">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="accordion-wrapper">
+                                                        <button class="toggles" >
+                                                            View Details  <i class="fas fa-plus icon"></i>
+                                                        </button>
+                                                    <div class="content">
+                                                        <h3>Date Issued: <span>{{ \Carbon\carbon::parse( $info->created_at )->format('F, j  Y') }}</span></h3>
+                                                        <h3>Author By: <span>{{ $info->author_by }}</span> </h3>
+                                                        
+                                                        <h2 style="padding-top:30px;">Details</h2>
+                                                        {!! $info->details !!}
 
-                                    <h2>No of Offense</h2>
-                                    <p>{{ $info->no_of_offense }}</p>
-                                    <span>{{ $info->author_by }}</span>
-                                </div>
-                                
-                                @if($user->is_admin == 1)
-                                    <div class="card-footer">
-                                        <form action="{{ url('/reprimand/delete/'.$info->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a type="submit" class="btn btn-danger">Remove</a>
-                                        </form>
-                                        <a href="{{ url('/reprimand/edit/'.$info->id) }}" class="btn btn-success">Edit</a>
+                                                        <p>{!! $info->no_of_offense !!}</p>        
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @if($user->is_admin == 1)
+                                                <div class="card-footer footer-display text-right">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <form action="{{ url('/reprimand/delete/'.$info->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn-button-2">Remove</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-6 btn-pad">
+                                                            <a href="{{ url('/reprimand/edit/'.$info->id) }}" class="btn-button-2 ">Edit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
-                                @endif
+                                </div>
                             </div>
+                                <!-- end here -->
                         @endforeach 
                     </div>
                 </div>
@@ -61,7 +88,7 @@
     
 
             @if($user->is_admin == 1)
-                <div class="col-md-6 col-12">
+                <div class="col-md-5 col-12">
                     <div class="card">
                             @if (session('status'))
                                 <h6 class="alert alert-success">{{ session('status') }}</h6>
@@ -90,19 +117,19 @@
                                         </div>
                                     </div>
 
+                                    <label class="label-comment">Offense Detail</label>
                                     <div class="form-group col-12">
-                                        <textarea name="details" class="form-control" id="details" cols="30" rows="10" required="">
+                                        <textarea name="details" class="form-control" id="details_reprimand" cols="30" rows="10" required="">
                                         </textarea>
-                                        <label>Offense details</label>
                                         <div class="invalid-feedback">
                                             Please fill in the Offense details
                                         </div>
                                     </div>
-
+                                    
+                                    <label class="label-comment">No of Offense regulations</label>
                                     <div class="form-group col-12">
-                                        <textarea name="no_of_offense" class="form-control" id="no_of_offense" cols="30" rows="10" required="">
+                                        <textarea name="no_of_offense" class="form-control" id="no_of_offense_reprimand" cols="30" rows="10" required="">
                                         </textarea>
-                                        <label>No of Offense</label>
                                         <div class="invalid-feedback">
                                             Please fill in no of Offense
                                         </div>

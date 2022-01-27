@@ -31,26 +31,34 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        @foreach($active as $info)
-                            @php
-                                $date1 = $info->date_given;
-                                $date2 = \Carbon\Carbon::now();
-                                $dateCon1 = Carbon\Carbon::parse($date1);
-                                $dateCon2 = Carbon\Carbon::parse($date2);
-                                $days = $dateCon1->diffInDays($dateCon2);
-                            @endphp
-                            <div class="card">
-                                <div class="card-header ">
-                                    <h4>{{ $info->name }}</h4>
-                                    {{ $days }}
-                                </div>
-                                <div class="card-body">
-                                    <h5><i class="fas fa-times"></i> {{ $info->type_of_offense }}</h5>
-                                    <a href="{{ $info->detail_reports }}" target="_blank"> Click here to view the detail report </a>
-                                    <a href="{{ url('send/reprimand/'.$info->user_id) }}">View {{ $info->name }} Records</a>
-                                </div>
+                        <div class="card">
+                            <div class="card-body">  
+                                @foreach($active as $info)
+                                    @php
+                                        $date1 = $info->date_given;
+                                        $date2 = \Carbon\Carbon::now();
+                                        $dateCon1 = Carbon\Carbon::parse($date1);
+                                        $dateCon2 = Carbon\Carbon::parse($date2);
+                                        $days = $dateCon1->diffInDays($dateCon2);
+                                    @endphp
+                                    <span class="btn  {{ $days > 2 ? 'btn-danger':'btn-warning'}} btn-notification"> <i class="fa fa-calendar"></i>
+                                        @if($days == 0)
+                                            New
+                                        @else
+                                            {{$days}} days ago
+                                        @endif
+                                    </span>
+                                    <div class="card">
+                                        <div class="card-header ">
+                                            <h4>Employee Name: {{ $info->name }}</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="padding-top:30px;">Click here to <a href="{{ url('send/reprimand/'.$info->user_id) }}">View Details</a></h3>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
+                        </div>      
                     </div>
                 </div>
             </div>
@@ -64,26 +72,34 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        @foreach($answer as $info)
-                            @php
-                                $date1 = $info->date_given;
-                                $date2 = \Carbon\Carbon::now();
-                                $dateCon1 = Carbon\Carbon::parse($date1);
-                                $dateCon2 = Carbon\Carbon::parse($date2);
-                                $days = $dateCon1->diffInDays($dateCon2);
-                            @endphp
-                            <div class="card">
-                                <div class="card-header ">
-                                    <h4>{{ $info->name }}</h4>
-                                    {{ $days }}
-                                </div>
+                        <div class="card">
+                            @foreach($answer as $info)
                                 <div class="card-body">
-                                    <h5><i class="fas fa-times"></i> {{ $info->type_of_offense }}</h5>
-                                    <a href="{{ $info->detail_reports }}" target="_blank"> Click here to view the detail report </a>
-                                    <a href="{{ url('send/reprimand/'.$info->user_id) }}">View {{ $info->name }} Records</a>
+                                    @php
+                                        $date1 = $info->explanation_date;
+                                        $date2 = \Carbon\Carbon::now();
+                                        $dateCon1 = Carbon\Carbon::parse($date1);
+                                        $dateCon2 = Carbon\Carbon::parse($date2);
+                                        $days = $dateCon1->diffInDays($dateCon2);
+                                    @endphp
+                                    <span class="btn  {{ $days > 2 ? 'btn-info':'btn-success'}} btn-notification"> <i class="fa fa-bell-o"></i>
+                                        @if($days == 0)
+                                            Recently Submitted
+                                        @else
+                                            {{$days}} days ago
+                                        @endif
+                                    </span>
+                                    <div class="card">      
+                                        <div class="card-header ">
+                                            <h4>{{ $info->name }}</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="padding-top:30px;">Click here to <a href="{{ url('send/reprimand/'.$info->user_id) }}">View Details</a></h3>
+                                        </div>
+                                    </div>     
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

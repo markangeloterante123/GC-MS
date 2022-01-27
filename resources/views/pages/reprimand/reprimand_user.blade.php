@@ -22,9 +22,9 @@
     <section class="section">
         <div class="row mt-sm-4">
 
-                <div class="col-md-6 col-12">
+                <div class="{{ $user->is_admin == 1 ? 'col-md-6':'col-12'}} col-12">
                     <div class="row">
-                        <!-- first col -->
+                        <!-- first col user-information -->
                         <div class="col-12">
                             @foreach($userData as $info)
                             <div class="card profile-widget">
@@ -78,87 +78,111 @@
                         </div>
                         <!-- end col -->
                         <!-- 2nd col -->
-                        @foreach ($reptRecord as $records)
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h1><i class="fas fa-times-circle"> {{ $records->type_of_offense }} </i></h1>
-                                    </div>
-                                    <div class="card-body">
-                                        <dic class="card">
-                                            <div class="card-header">
-                                                <h4>No. of Offense: {{ $records->no_of_offense }}</h4>
-                                                <p>Status: {{ $records->status }}</p>
-                                                <span>Send by: {{ $records->issue_by }}</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <p>{{ $records->detail_reports }}</p>
-                                                <h3>Written Explination</h3>
-
-                                                @if($records->written_explanation)
-                                                    <a href="{{ $records->written_explanation }}" target="_blank">{{ $records->written_explanation }}</a>
-                                                @endif
-                                                
-                                            </div>
-                                            @if($user->is_admin == 0)
-                                                @if(!$records->actions_taken)
-                                                    <div class="card-body">
-                                                        <form action="{{ url('send/user/explination/'.$records->id) }}" method="post" class="needs-validation" novalidate="">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="row">
-                                                                <div class="form-group col-12">
-                                                                    <input type="text" id="written_explanation" name="written_explanation" class="form-control" required="">
-                                                                    <label for="">Explination Letter ( URL Documents )</label>
-                                                                    <div class="invalid-feedback">
-                                                                        Please fill in the reprimand type
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer">
-                                                                    <button class="btn-button-2">Send</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                @endif
-                                            @else
-                                                @if(!$records->actions_taken)
-                                                    <div class="card-body">
-                                                        <form action="{{ url('send/user/actions/'.$records->id) }}" method="post" class="needs-validation" novalidate="">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <div class="row">
-                                                                <div class="form-group col-12">
-                                                                    <textarea name="actions_taken" id="actions_taken" class="form-control" cols="30" rows="10" required=""></textarea>
-                                                                    <label for="">Actions Taken</label>
-                                                                    <div class="invalid-feedback">
-                                                                        Please fill in the reprimand type
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer">
-                                                                    <button class="btn-button-2">Send</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                @endif
-                                            @endif
-
-
-                                        </dic>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
                         
+
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    link
+                                    <h4><i class="fas fa-times-circle"></i> Reprimand Records</h4>
+                                </div>
+                                <div class="card-body">
+                                @foreach ($reptRecord as $records)
+                                    <!-- accordion start here -->
+                                        @if($records->status == "Require Explanation")
+                                            <span class="btn btn-danger btn-notification"> <i class="fa fa-times"></i> {{ $records->status }}</span>
+                                        @elseif ($records->status == "Answered")
+                                            @if($user->is_admin == 1)
+                                                <span class="btn btn-info btn-notification"> <i class="fa fa-calendar"></i> {{ $records->status }}</span>
+                                            @else
+                                                <span class="btn btn-warning btn-notification"> <i class="fa fa-calendar"></i> Pending Cased</span>
+                                            @endif
+                                        @endif
+                                        <div class="accordion md-accordion" id="accordionEx{{ $records->id }}" role="tablist" aria-multiselectable="true">
+                                            <div class="card">
+                                                    <div class="card-header" role="tab" id="headingTree">
+                                                        <a data-toggle="collapse" data-parent="#accordionEx{{ $records->id }}" href="#collapseRec{{ $records->id }}" aria-expanded="true"
+                                                                    aria-controls="collapseRec{{ $records->id }}">
+                                                        <h3 class="mb-0 " style="color:#02b075;">
+                                                            {{ $records->type_of_offense }} <i class="fas fa-angle-down rotate-icon"></i>
+                                                        </h3>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseRec{{ $records->id }}" class="collapse" role="tabpanel" aria-labelledby="headingTree"
+                                                                data-parent="#accordionEx{{ $records->id }}">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="accordion-wrapper">
+                                                                    <button class="toggles" >
+                                                                        View Details  <i class="fas fa-plus icon"></i>
+                                                                    </button>
+                                                                <div class="content">
+                                                                    <h3>Type of Offense: <span>{{ $records->type_of_offense }}</span></h3>
+                                                                    <h3>Date Issued: <span>{{ \Carbon\carbon::parse( $info->date_given )->format('F, j  Y') }}</span></h3>
+                                                                    <h3>No. of offense: <span>{{ $records->no_of_offense }}</span></h3>
+                                                                    <h3>Issued by: <span>{{ $records->issue_by }}</span> </h3>
+                                                                    
+                                                                    <h2 style="padding-top:30px;">Details</h2>
+                                                                    <p> Click here to view the detail of the report <a href="{{ $records->detail_reports }}" target="_blank">View Detail</a></p>
+                                                                    
+                                                                    @if($user->is_admin == 0)
+                                                                        @if(!$records->written_explanation && !$records->actions_taken)
+                                                                            <h2 style="padding-top:30px;">Write written explanation</h2>
+                                                                            <form action="{{ url('send/user/explination/'.$records->id) }}" method="post" class="needs-validation" novalidate="">
+                                                                                @csrf
+                                                                                @method('PUT')
+                                                                                <div class="row">
+                                                                                    <div class="form-group col-12">
+                                                                                        <input type="text" id="written_explanation" name="written_explanation" class="form-control" required="">
+                                                                                        <label for="">Explanation letter ( URL Documents )</label>
+                                                                                        <div class="invalid-feedback">
+                                                                                            Please fill in the reprimand type
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                                                        <button class="btn-button-2">Send explanation letter</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        @else
+                                                                        <h2 style="padding:30px 0px 30px 0px;">Explanation letter: <a href="{{ $records->written_explanation }}" target="_blank"> View my explanation</a></h2>
+                                                                        @endif
+                                                                    @else
+                                                                        @if(!$records->actions_taken)
+                                                                            <form action="{{ url('send/user/actions/'.$records->id) }}" method="post" class="needs-validation" novalidate="">
+                                                                                @csrf
+                                                                                @method('PUT')
+                                                                                <div class="row">
+                                                                                <label class="label-comment">Disciplinary action</label>
+                                                                                    <div class="form-group col-12">
+                                                                                        <textarea name="actions_taken" id="actions_taken-send" class="form-control" cols="30" rows="10" required=""></textarea>
+                                                                                        <div class="invalid-feedback">
+                                                                                            Please fill in the Disciplinary action
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card-footer">
+                                                                                        <button class="btn-button-2">Send</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        @endif
+                                                                    @endif
+                                                                    @if($records->actions_taken)
+                                                                    <h2 style="padding-bottom:10px">Sanctions</h2>
+                                                                    <p style="padding-bottom:30px">{!! $records->actions_taken !!}</p>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- accordion end -->
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-
+                        
                         <!-- end col -->
                     </div>
                 </div>

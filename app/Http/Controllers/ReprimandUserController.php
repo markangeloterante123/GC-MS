@@ -63,10 +63,12 @@ class ReprimandUserController extends Controller
     {
         $active = User::rightjoin('reprimand_users', 'reprimand_users.user_id', '=', 'users.id')
                     ->where('reprimand_users.written_explanation', "=", NULL)
+                    ->orderBy('reprimand_users.id','desc')
               		->get();
         $answer = User::rightjoin('reprimand_users', 'reprimand_users.user_id', '=', 'users.id')
                     ->where('reprimand_users.written_explanation', "!=", NULL)
                     ->where('reprimand_users.actions_taken', "=", NULL)
+                    ->orderBy('reprimand_users.id','desc')
               		->get();
         return view('pages.reprimand.reprimands_records', compact('active', 'answer'));
     }

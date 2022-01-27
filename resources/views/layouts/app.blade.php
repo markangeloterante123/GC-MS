@@ -85,9 +85,9 @@
                     </div>
                     @endif
                     <div class="card-body">
-                        <div class="form-group">
+                        <div class="form-groups">
                             <label for="file">Choose File</label>
-                            <input type="file" name="file" class="form-control">
+                            <input type="file" name="file" class="form-control" required="" accept="csv,xlsx">
                         </div>
                     </div>
                 </div>

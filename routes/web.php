@@ -52,7 +52,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/setting/options', [ OptionsController::class, "index" ])->name('setting.options');
     Route::put('/setting/add/{type}', [ OptionsController::class, "create"])->name('setting.add');
     Route::delete('/setting/remove/{id}', [ OptionsController::class, "destroy" ])->name('setting.remove');
-
+  
     // salary informations
     Route::put('/setting/salary/update/{id}', [ SalaryHistoryController::class, "store" ])->name('setting.salary.update');
     Route::put('/setting/salary/edit/{id}', [ SalaryHistoryController::class, "edit" ])->name('setting.salary.edit');
