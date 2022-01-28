@@ -131,4 +131,11 @@ class UserController extends Controller
         Excel::import(new UsersImport, $request->file('file'));
         return back()->with('success', 'Users imported successfully');
     }
+
+    public function download_docs()
+    {
+        $filePath = public_path("file/Employee_Upload_Format.xlsx");
+    	$fileName = 'Employee Upload Template.xlsx';
+    	return response()->download($filePath, $fileName);
+    }
 }

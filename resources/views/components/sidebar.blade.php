@@ -40,6 +40,7 @@ $links = [
                 "icon"=>"fas fa-cogs",
                 "section_list" => [
                     ["href" => "setting.options", "text" => "Add Options"],
+                    ["href" => "download.docs", "text" => "Employee Template" ]
                 ]
             ]
         ],

@@ -32,8 +32,8 @@
                     </div>
                     <div class="col-12">
                         <div class="card">
+                        @foreach($active as $info)
                             <div class="card-body">  
-                                @foreach($active as $info)
                                     @php
                                         $date1 = $info->date_given;
                                         $date2 = \Carbon\Carbon::now();
@@ -56,8 +56,8 @@
                                             <h3 class="padding-top:30px;">Click here to <a href="{{ url('send/reprimand/'.$info->user_id) }}">View Details</a></h3>
                                         </div>
                                     </div>
-                                @endforeach
                             </div>
+                        @endforeach
                         </div>      
                     </div>
                 </div>

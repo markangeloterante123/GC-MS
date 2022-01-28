@@ -81,7 +81,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::put('/memo/update/{id}', [ MemoController::class, "update" ])->name('memo.update');
 
     // Import and Exporting User information
-    Route::get('export', [UserController::class, "export"])->name("export");
-    Route::post("import", [UserController::class, "import"])->name('import');
+    Route::get('/export', [UserController::class, "export"])->name("export");
+    Route::post('/import', [UserController::class, "import"])->name('import');
 
+    //download Employee Format
+    Route::get('/download/docs',[ UserController::class, 'download_docs' ])->name('download.docs');
 });

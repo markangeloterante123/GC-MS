@@ -19,9 +19,9 @@ class CreateSalaryHistoriesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('salary');
             $table->string('type');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->string('effective_date');
-            $table->string('end_date');
+            $table->string('end_date')->nullable();
             $table->integer('status');
             $table->timestamps();
         });
