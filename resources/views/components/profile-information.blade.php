@@ -138,10 +138,9 @@
                                                   <h3>Salary: ₱ {{ number_format($his->salary, 2) }}</h3>
                                                   <h3>Type: {{ $his->type }}</h3>
                                                   <h3>Effective Date:  {{ Carbon\Carbon::parse($his->effective_date)->format('M. d, Y') }}</h3>
-                                                  <h3>End Date:   {{ Carbon\Carbon::parse($his->end_date)->format('M. d, Y') }}</h3>
 
                                                   <span>Notes</span>
-                                                  <p>{{ $his->notes }}</p>
+                                                  <p>{!! $his->notes !!}</p>
                                                   
                                                   @if($user->is_admin == 1)
                                                     <form action="{{ url('setting/salary/edit/'.$his->id) }}" method="POST">
@@ -187,10 +186,9 @@
                                                   <h3>Salary: ₱ {{ number_format($his->salary, 2) }}</h3>
                                                   <h3>Type: {{ $his->type }}</h3>
                                                   <h3>Effective Date:  {{ Carbon\Carbon::parse($his->effective_date)->format('M. d, Y') }}</h3>
-                                                  <h3>End Date:   {{ Carbon\Carbon::parse($his->end_date)->format('M. d, Y') }}</h3>
 
                                                   <span>Notes</span>
-                                                  <p>{{ $his->notes }}</p>
+                                                  <p>{!! $his->notes !!}</p>
                                                 </div>
                                               </div>
                                             @endif

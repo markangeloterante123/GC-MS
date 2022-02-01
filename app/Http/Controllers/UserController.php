@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Exports\ExportInformation;
 use App\Imports\UsersImport;
+use App\Imports\SalaryImport;
 use App\Models\User;
 use App\Models\FileRecord;
 use App\Models\Options;
@@ -125,6 +126,14 @@ class UserController extends Controller
      *
      * @return void
      */
+
+    public function salaryImport(Request $request)
+    {
+        config(['excel.import.startRow' => 2]);
+        Excel::import(new SalaryImport, $request->file('file'));
+        return back()->with('success', 'Salary imported successfully');
+    }
+
     public function import(Request $request)
     {   
         config(['excel.import.startRow' => 2]);
@@ -136,6 +145,13 @@ class UserController extends Controller
     {
         $filePath = public_path("file/Employee_Upload_Format.xlsx");
     	$fileName = 'Employee Upload Template.xlsx';
+    	return response()->download($filePath, $fileName);
+    }
+
+    public function download_salary () 
+    {
+        $filePath = public_path("file/Salary_Upload_Format.xlsx");
+    	$fileName = 'Salary Upload Template.xlsx';
     	return response()->download($filePath, $fileName);
     }
 }

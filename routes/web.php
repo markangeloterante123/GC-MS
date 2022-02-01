@@ -8,6 +8,7 @@ use App\Http\Controllers\GoogleSocialiteController;
 use App\Http\Controllers\ReprimandUserController;
 use App\Http\Controllers\ReprimandDetailController;
 use App\Http\Controllers\MemoController;
+use App\Http\Controllers\ImportControllers;
 
 
 /*
@@ -41,6 +42,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     // View Profile
     Route::get('/user/info', [ UserController::class, "user_file" ])->name('user.info');
     Route::get('/user/information/{userId}', [ UserController::class, "userInformations" ])->name('user.information');
+    Route::view('/fulldata',"pages.user.user_full_table")->name('fulldata');
 
     // update user information routes
     Route::view('/update/account',"pages.user.user-update-profile" )->name('update.account');
@@ -83,7 +85,9 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     // Import and Exporting User information
     Route::get('/export', [UserController::class, "export"])->name("export");
     Route::post('/import', [UserController::class, "import"])->name('import');
+    Route::post('/salary', [UserController::class, "salaryImport"])->name('salary');
 
-    //download Employee Format
+    //download Employee Format & Salary
     Route::get('/download/docs',[ UserController::class, 'download_docs' ])->name('download.docs');
+    Route::get('/download/salary',[UserController::class, 'download_salary'])->name('download.salary');
 });

@@ -1,3 +1,7 @@
+@php
+    $user = auth()->user();
+@endphp
+@if($user->is_admin == 1)
 <div class="bg-gray-100 text-gray-900 tracking-wider leading-normal">
     <div class="p-8 pt-4 mt-2 bg-white" x-data="window.__controller.dataTableMainController()" x-init="setCallback();">
         <div class="flex pb-4 -ml-3">
@@ -7,11 +11,11 @@
             <a data-toggle="modal" data-target="{{ $data->href->import_modal }}" class="ml-2 btn btn-info shadow-none">
                 <span class="fas fa-file-import"></span> {{ $data->href->import_text }}
             </a>
-            <!-- <a href="{{ url('salary.import') }}" class="ml-2 btn btn-warning shadow-none">
-                <span class="fas fa-file-export"></span> Import Salary Records
-            </a> -->
-            <a href="#" class="ml-2 btn btn-success shadow-none">
-                <span class="fas fa-table"></span> View Full Data Table
+            <a data-toggle="modal" data-target="#salaryHistory" class="ml-2 btn btn-warning shadow-none">
+                <span class="fas fa-file-import"></span> Import Salary Records
+            </a>
+            <a href="{{ url('fulldata') }}" class="ml-2 btn btn-success shadow-none">
+                <span class="fas fa-table"></span> View all records
             </a>
         </div>
 
@@ -52,5 +56,6 @@
         
     </div>
 </div>
+@endif
 
 

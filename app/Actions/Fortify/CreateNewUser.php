@@ -34,6 +34,6 @@ class CreateNewUser implements CreatesNewUsers
             'employement_status'=>'Set Employment status',
             'file'=>0,
             'password' => Hash::make($input['password']),
-        ]);
+        ]);;
     }
 }

@@ -30,7 +30,7 @@ class UsersImport implements  ToModel, WithBatchInserts, WithChunkReading, WithS
     public function model(array $row)
     {
         $year = Carbon::now()->year;    
-        $email = User::where('email', '=', $row[21])->first();
+        $email = User::withTrashed()->where('email', '=', $row[21])->first();
         $user = User::latest('id')->first();
         $count = $user->id + 1;
         
