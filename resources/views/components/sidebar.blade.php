@@ -28,7 +28,7 @@ $links = [
         "href" => [
             [
                 
-                "section_text" => "User",
+                "section_text" => "Employee",
                 "icon"=>"fas fa-user-plus",
                 "section_list" => [
                     ["href" => "user", "text" => "Data User"],
@@ -36,7 +36,16 @@ $links = [
                 ]
             ],
             [
-                "section_text" => "Employee Setting",
+                "section_text" => "Records",
+                "icon"=>"fas fa-archive",
+                "section_list" => [
+                    ["href" => "reprimand.records", "text" => "Reprimand Records"],
+                    ["href" => "tirediness.records", "text" => "Tardiness Records"],
+                    ["href" => "reprimand.records", "text" => "Absences Records"],
+                ]
+            ],
+            [
+                "section_text" => "Setting",
                 "icon"=>"fas fa-cogs",
                 "section_list" => [
                     ["href" => "setting.options", "text" => "Add Options"],
@@ -46,7 +55,7 @@ $links = [
             ]
         ],
         "access"=>"1",
-        "text" => "User",
+        "text" => "Employee",
         "is_multi" => true,
     ],
     [
@@ -85,15 +94,17 @@ $links = [
         "href" => [
             [
                 
-                "section_text" => "Reprimand Records",
-                "icon"=>"fas fa-archive",
+                "section_text" => "FAQ'S",
+                "icon"=>"fas fa-question-circle",
                 "section_list" => [
-                    ["href" => "reprimand.records", "text" => "Records"],
+                    ["href" => "system.docu", "text" => "System manual"],
+                    ["href" => "system.docu", "text" => "System Information"],
+                    ["href" => "system.docu", "text" => "Coding Documentation"]
                 ]
             ]
         ],
         "access"=>"1",
-        "text" => "RECORDS",
+        "text" => "System Documentation",
         "is_multi" => true,
     ],
          

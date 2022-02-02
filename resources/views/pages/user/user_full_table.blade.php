@@ -1,4 +1,5 @@
-<x-app-layout>
+@extends('layouts.docView')
+@section('content')
     <x-slot name="header_content">
         <h4>{{ __('Full data table') }}</h4>
 
@@ -12,5 +13,4 @@
     <div>
         <livewire:userfulldata />
     </div>
-    
-</x-app-layout>
+@endsection

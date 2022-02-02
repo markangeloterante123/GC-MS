@@ -9,6 +9,7 @@ use App\Http\Controllers\ReprimandUserController;
 use App\Http\Controllers\ReprimandDetailController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\ImportControllers;
+use App\Http\Controllers\TirednessRecController;
 
 
 /*
@@ -65,6 +66,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::delete('/reprimand/delete/{id}', [ ReprimandDetailController::class, "destroy" ])->name('reprimand.delete');
     Route::get('/reprimand/edit/{id}', [ ReprimandDetailController::class, "edit" ])->name('reprimand.edit');
     Route::put('/reprimand/update/{id}', [ ReprimandDetailController::class, "update" ])->name('reprimand.update');
+
+    //Tiredness
+    Route::get('/tirediness/records', [TirednessRecController::class, "index"])->name('tirediness.records');
+    Route::resource('/tirediness', TirednessRecController::class);
+    Route::post('/tirediness/import', [TirednessRecController::class, "import"])->name('tirediness.import');
     
     // Send reprimands to its users
     Route::get('/send/reprimand/{id}', [ ReprimandUserController::class, "index"])->name('send.reprimand');
@@ -90,4 +96,7 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //download Employee Format & Salary
     Route::get('/download/docs',[ UserController::class, 'download_docs' ])->name('download.docs');
     Route::get('/download/salary',[UserController::class, 'download_salary'])->name('download.salary');
+
+    // Documentation
+    Route::view('/system/docu',"pages.documentation.faq")->name('system.docu');
 });

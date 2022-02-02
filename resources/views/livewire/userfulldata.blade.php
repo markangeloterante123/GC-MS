@@ -82,7 +82,7 @@
                                     @if($data->deleted_at === NULL)
                                         <span class="btn btn-success" style="border-radius:50px;"><i class="fa fa-check"></i> Employeed</span>
                                     @else
-                                        <span class="btn btn-danger" style="border-radius:50px;"><i class="fa fa-check"></i> No Access</span>
+                                        <span class="btn btn-danger" style="border-radius:50px;"><i class="fa fa-times"></i> No Access</span>
                                     @endif
                                 </td>
                                 <td style="min-width:160px">

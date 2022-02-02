@@ -15,7 +15,6 @@
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@400;600;700&family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
         <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
         <link rel="stylesheet" href="{{ asset('stisla/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('stisla/css/components.css') }}">
@@ -145,6 +144,48 @@
             </div>
           </div>
         </div>
+        <!-- tirediness Modal -->
+        
+        <div class="modal fade" tabindex="-1" role="dialog" id="uploadTirediness">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Tirediness Records</h5>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{{ route('tirediness.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ Session::get('success') }}
+                    </div>
+
+                    @elseif(Session::has('failed'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+                    <div class="card-body">
+                        <div class="form-groups">
+                            <label for="file">Choose File</label>
+                            <input type="file" name="file" class="form-control" required="" accept="csv,xlsx">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload Records</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
         <!-- General JS Scripts -->
         <script src="{{ asset('stisla/js/modules/jquery.min.js') }}"></script>
@@ -173,13 +214,7 @@
         
         @isset($script)
             {{ $script }}
-        @endisset
-
-        <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-        <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
-       
+        @endisset      
         
     </body>
 </html>

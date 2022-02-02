@@ -14,7 +14,7 @@
             <a data-toggle="modal" data-target="#salaryHistory" class="ml-2 btn btn-warning shadow-none">
                 <span class="fas fa-file-import"></span> Import Salary Records
             </a>
-            <a href="{{ url('fulldata') }}" class="ml-2 btn btn-success shadow-none">
+            <a href="{{ url('fulldata') }}" target="_blank" class="ml-2 btn btn-success shadow-none">
                 <span class="fas fa-table"></span> View all records
             </a>
         </div>

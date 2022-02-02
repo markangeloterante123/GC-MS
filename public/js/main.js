@@ -66,5 +66,13 @@ ClassicEditor
 } );
 
 
+ClassicEditor
+    .create( document.querySelector( '#content-edit-memo' ) )
+    .catch( error => {
+} );
 
+ClassicEditor
+    .create( document.querySelector( '#content-edit-memo2' ) )
+    .catch( error => {
+} );
 

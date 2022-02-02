@@ -50,12 +50,12 @@
                                                 Please fill in the Title
                                             </div>
                                         </div>
-
+                                        <label class="label-comment">No of content</label>
                                         <div class="form-group col-12">
-                                            <textarea name="content" class="form-control" id="content" cols="30" rows="10" required="">
+                                            <textarea name="content" class="form-control" id="content-edit-memo" cols="30" rows="10" required="">
                                                 {{ $data->content }}
                                             </textarea>
-                                            <label>No of content</label>
+                                            
                                             <div class="invalid-feedback">
                                                 Please fill in content
                                             </div>
@@ -101,11 +101,11 @@
                                             Please fill in the Title
                                         </div>
                                     </div>
-
+                                    <label class="label-comment">No of content</label>
                                     <div class="form-group col-12">
-                                        <textarea name="content" class="form-control" id="content" cols="30" rows="10" required="">
+                                        <textarea name="content" class="form-control" id="content-edit-memo2" cols="30" rows="10" required="">
                                         </textarea>
-                                        <label>No of content</label>
+                                        
                                         <div class="invalid-feedback">
                                             Please fill in content
                                         </div>
