@@ -10,6 +10,7 @@ use App\Http\Controllers\ReprimandDetailController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\ImportControllers;
 use App\Http\Controllers\TirednessRecController;
+use App\Http\Controllers\AbsencesController;
 
 
 /*
@@ -71,6 +72,11 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::get('/tirediness/records', [TirednessRecController::class, "index"])->name('tirediness.records');
     Route::resource('/tirediness', TirednessRecController::class);
     Route::post('/tirediness/import', [TirednessRecController::class, "import"])->name('tirediness.import');
+
+    // Absence
+    Route::get('/absences/records', [AbsencesController::class, 'index'])->name('absences.records');
+    Route::resource('/absences', AbsencesController::class);
+    Route::post('/absences/import', [AbsencesController::class, "import"])->name('absences.import');
     
     // Send reprimands to its users
     Route::get('/send/reprimand/{id}', [ ReprimandUserController::class, "index"])->name('send.reprimand');
@@ -96,6 +102,8 @@ Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     //download Employee Format & Salary
     Route::get('/download/docs',[ UserController::class, 'download_docs' ])->name('download.docs');
     Route::get('/download/salary',[UserController::class, 'download_salary'])->name('download.salary');
+    Route::get('/download/tirediness',[UserController::class, 'download_tirediness'])->name('download.tirediness');
+    Route::get('/download/absences',[UserController::class, 'download_absences'])->name('download.absences');
 
     // Documentation
     Route::view('/system/docu',"pages.documentation.faq")->name('system.docu');

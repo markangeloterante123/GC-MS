@@ -76,3 +76,7 @@ ClassicEditor
     .catch( error => {
 } );
 
+ClassicEditor
+    .create( document.querySelector( '#description-form6' ) )
+    .catch( error => {
+} );

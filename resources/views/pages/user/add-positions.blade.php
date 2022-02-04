@@ -18,7 +18,74 @@
     <section class="section">
         <div class="row mt-sm-4">
 
-            <!-- <div class="col-12 col-md-12 col-lg-6">
+            <!--  -->
+            <div class="col-md-6 col-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fa fa-list-ol"></i> Employee Contract  </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            <div class="row">
+                            @foreach($option as $info) 
+                                @if($info->type == 2)
+                                    <div class="accordion-wrapper">
+                                        <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
+                                        <div class="content">
+                                            <span>Description</span>
+                                            <p>{!! $info->description !!}</p>
+                                            <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn-button-2">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                @endif 
+                            @endforeach
+                            </div>
+                        </div>
+                        
+                        <form action="{{ url('setting/add/2') }}" method="post" class="needs-validation" novalidate="">
+                            @method('PUT')
+                            @csrf
+                            <div class="card-header">
+                                    <h4><i class="fa fa-plus-circle"></i> Add Employee Contract</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            
+                                            <input 
+                                                type="text" 
+                                                name="options" 
+                                                id="options" 
+                                                class="form-control"
+                                                required=""
+                                            >
+                                            <label for="options">Employee Contract</label>
+                                            <div class="invalid-feedback">
+                                                Please fill up the form
+                                            </div>
+                                        </div>
+                                        <label class="label-comment">Position Task</label>
+                                        <div class="form-group col-12">
+                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" required="">
+                                            </textarea>
+                                            <div class="invalid-feedback">
+                                                Please add some description
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button class="btn-button-2">Save Changes</button>
+                                </div>
+                                
+                        </form>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fa fa-th-list"></i> Employee Status  </h4>
@@ -32,7 +99,7 @@
                                         <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
                                         <div class="content">
                                             <span>Description</span>
-                                            <p>{{ $info->description }}</p>
+                                            <p>{!! $info->description !!}</p>
                                             <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -68,8 +135,8 @@
                                         </div>
                                         <label class="label-comment">Notes</label>
                                         <div class="form-group col-12">
-                                            <textarea name="description" id="description-form2" class="form-control" cols="30" rows="10" require="">
-                                                -
+                                            <textarea name="description" id="description-form2" class="form-control" cols="30" rows="10" required="">
+                                                
                                             </textarea>
                                             <div class="invalid-feedback">
                                                 Please fill up the form
@@ -83,24 +150,21 @@
                         </form>
                     </div>
                 </div>
-            </div> -->
 
-            <!--  -->
-            <div class="col-12 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4><i class="fa fa-list-ol"></i> Employee Contract  </h4>
+                        <h4><i class="fa fa-th-list"></i> Position  </h4>
                     </div>
                     <div class="card-body">
                         <div class="card-body">
                             <div class="row">
                             @foreach($option as $info) 
-                                @if($info->type == 2)
+                                @if($info->type == 6)
                                     <div class="accordion-wrapper">
                                         <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
                                         <div class="content">
                                             <span>Description</span>
-                                            <p>{{ $info->description }}</p>
+                                            <p>{!! $info->description !!}</p>
                                             <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -113,16 +177,15 @@
                             </div>
                         </div>
                         
-                        <form action="{{ url('setting/add/2') }}" method="post" class="needs-validation" novalidate="">
+                        <form action="{{ url('setting/add/6') }}" method="post" class="needs-validation" novalidate="">
                             @method('PUT')
                             @csrf
-                            <div class="card-header">
-                                    <h4><i class="fa fa-plus-circle"></i> Add Employee Contract</h4>
+                                <div class="card-header">
+                                    <h4><i class="fa fa-plus-circle"></i> Add Employee Position  </h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-12">
-                                            
                                             <input 
                                                 type="text" 
                                                 name="options" 
@@ -130,17 +193,18 @@
                                                 class="form-control"
                                                 required=""
                                             >
-                                            <label for="options">Position</label>
+                                            <label>Status</label>
                                             <div class="invalid-feedback">
                                                 Please fill up the form
                                             </div>
                                         </div>
-                                        <label class="label-comment">Position Task</label>
+                                        <label class="label-comment">Notes</label>
                                         <div class="form-group col-12">
-                                            <textarea name="description" id="description-form" class="form-control" cols="30" rows="10" required="">
+                                            <textarea name="description" id="description-form6" class="form-control" cols="30" rows="10" required="">
+                                                
                                             </textarea>
                                             <div class="invalid-feedback">
-                                                Please add some description
+                                                Please fill up the form
                                             </div>
                                         </div>
                                     </div>
@@ -148,14 +212,14 @@
                                 <div class="card-footer text-right">
                                     <button class="btn-button-2">Save Changes</button>
                                 </div>
-                                
                         </form>
                     </div>
                 </div>
             </div>
             <!-- Designation -->
-            <div class="col-12 col-md-12 col-lg-6">
-                <div class="card">
+
+            <div class="col-md-6 col-12">
+            <div class="card">
                     <div class="card-header">
                         <h4><i class="fa fa-list-ol"></i> Type of Designation  </h4>
                     </div>
@@ -168,7 +232,7 @@
                                         <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
                                         <div class="content">
                                             <span>Description</span>
-                                            <p>{{ $info->description }}</p>
+                                            <p>{!! $info->description !!}</p>
                                             <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -219,10 +283,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
 
-            <!-- Type of contract -->
-            <div class="col-12 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fa fa-list-ol"></i> Type of Contract  </h4>
@@ -236,7 +297,7 @@
                                         <button class="toggles" >{{$info->options}}<i class="fas fa-plus icon"></i></button>
                                         <div class="content">
                                             <span>Description</span>
-                                            <p>{{ $info->description }}</p>
+                                            <p>{!! $info->description !!}</p>
                                             <form action="{{ url('setting/remove/'.$info->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -288,11 +349,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
 
-
-            <!-- Salary Options -->
-            <div class="col-12 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header">
                         <h4><i class="fa fa-list"></i> Salary Type  </h4>
@@ -348,6 +405,10 @@
                     </div>
                 </div>
             </div>
+           
+
+
+           
 
         </div>
     </section>

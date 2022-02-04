@@ -187,6 +187,48 @@
           </div>
         </div>
 
+        <!-- Absences -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="uploadAbsences">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Absences Records</h5>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{{ route('absences.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ Session::get('success') }}
+                    </div>
+
+                    @elseif(Session::has('failed'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
+                    <div class="card-body">
+                        <div class="form-groups">
+                            <label for="file">Choose File</label>
+                            <input type="file" name="file" class="form-control" required="" accept="csv,xlsx">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload Records</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <!-- General JS Scripts -->
         <script src="{{ asset('stisla/js/modules/jquery.min.js') }}"></script>
         <script defer async src="{{ asset('stisla/js/modules/popper.js') }}"></script>

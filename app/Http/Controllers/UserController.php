@@ -99,6 +99,7 @@ class UserController extends Controller
             ]);
             //update the records file
             $user->file = 1;
+            $user->employement_status = $request->employement_status;
             $user->update($request->all());
             return redirect()->back()->with('status','File Created Successfully');
         }
@@ -141,6 +142,7 @@ class UserController extends Controller
         return back()->with('success', 'Users imported successfully');
     }
 
+
     public function download_docs()
     {
         $filePath = public_path("file/Employee_Upload_Format.xlsx");
@@ -152,6 +154,20 @@ class UserController extends Controller
     {
         $filePath = public_path("file/Salary_Upload_Format.xlsx");
     	$fileName = 'Salary Upload Template.xlsx';
+    	return response()->download($filePath, $fileName);
+    }
+
+    public function download_tirediness ()
+    {
+        $filePath = public_path("file/Tirediness_Upload_Format.xlsx");
+    	$fileName = 'Tirediness Upload Template.xlsx';
+    	return response()->download($filePath, $fileName);
+    }
+
+    public function download_absences ()
+    {
+        $filePath = public_path("file/Absence_Upload_Format.xlsx");
+    	$fileName = 'Absence Upload Template.xlsx';
     	return response()->download($filePath, $fileName);
     }
 }

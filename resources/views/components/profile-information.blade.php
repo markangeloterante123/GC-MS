@@ -38,11 +38,26 @@
                             {{ $info->work_email }}
                         </div>
                     </div>
+                    <div class="profile-widget-name title-value">
+                        Status:
+                        <div class="text-muted d-inline font-weight-normal ">
+                            <div class="slash"></div> 
+                            {{ $info->employement_status }}
+                        </div>
+                    </div>
+                    <div class="profile-widget-name title-value">
+                      Position:
+                        <div class="text-muted d-inline font-weight-normal ">
+                            <div class="slash"></div> 
+                            {{ $info->position }}
+                        </div>
+                    </div>
                     
                     <div class="profile-info">
                       <h2>Name: {{ $info->name }}</h2>
                       <h3>Company Email: {{ $info->work_email }}</h3>
                       <h3>Status: {{ $info->employement_status }}</h3>
+                      <h3>Position: {{ $info->position }}</h3>
                     </div>
                     @foreach($opt as $op) 
                       @if($op->options == $info->designation)
@@ -408,9 +423,9 @@
                             </div>               
                             <div class="form-group col-md-3 col-12">
                                 @if($user->is_admin == 1)
-                                  <select name="gender" id="gender" class="form-control " >
+                                  <select name="gender" id="gender" class="form-control " required="">
                                     @if(empty($info->gender ))
-                                      <option value="{{ $info->gender }}">Select Gender</option>
+                                      <option value=""></option>
                                       <option value="Female">Female</option>
                                     @else
                                       <option value="{{ $info->gender }}">{{ $info->gender }}</option>
@@ -428,7 +443,7 @@
                                     value="{{ $info->gender }}" 
                                   >
                                 @endif
-                                <label>Gender</label>
+                                <label>Select Gender</label>
                               <div class="invalid-feedback">
                                 Please Select in the Gender
                               </div>
@@ -463,7 +478,41 @@
                       </div>
                       <div class="card-body">
                           <div class="row">
-                            <div class="form-group col-md-6 col-12">
+                            <!-- position -->
+                          <div class="form-group col-md-4 col-12">
+                              @if($user->is_admin == 1)
+                                <select name="position" id="position" class="form-control" required="">
+                                    <option value="{{ $info->position }}">{{ $info->position }}</option>
+                                    @foreach($opt as $op)
+                                      @if($op->options != $info->position && $op->type == 6)
+                                        <option value="{{ $op->options }}">{{ $op->options }}</option>
+                                      @endif
+                                    @endforeach
+                                </select>
+                                <label>Position</label>
+                                <div class="invalid-feedback">
+                                  Please fill in the Employee designation
+                                </div>
+                              @else
+                                @if($info->designation)  
+                                    <input 
+                                      type="text"
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
+                                      value="{{ $info->position }}"
+                                    >
+                                  @else
+                                    <input 
+                                      type="text"
+                                      class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
+                                      value="Need Update"
+                                    >
+                                @endif
+                                <label>Position</label>
+                              @endif
+                              
+                            </div>
+
+                            <div class="form-group col-md-4 col-12">
                               @if($user->is_admin == 1)
                                 <select name="designation" id="designation" class="form-control" required="">
                                     <option value="{{ $info->designation }}">{{ $info->designation }}</option>
@@ -473,7 +522,7 @@
                                       @endif
                                     @endforeach
                                 </select>
-                                <label>Employee Designation</label>
+                                <label>Designation</label>
                                 <div class="invalid-feedback">
                                   Please fill in the Employee designation
                                 </div>
@@ -496,7 +545,7 @@
                               
                             </div>
 
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-4 col-12">
                               @if($user->is_admin == 1)
                                 <select name="type_of_contract" id="type_of_contract" class="form-control" required="">
                                     <option value="{{ $info->type_of_contract }}">{{ $info->type_of_contract }}</option>
@@ -529,7 +578,7 @@
                               
                             </div>  
 
-                            <div class="form-group col-md-6 col-12">
+                            <div class="form-group col-md-4 col-12">
                               
                               @if($user->is_admin == 1)
                                 <select name="contracts" id="contracts" class="form-control" required="">
@@ -561,15 +610,53 @@
                                 <label>Contracts</label>
                               @endif
                               
-                            </div>                   
-                            <div class="form-group col-md-6 col-12">
+                            </div>   
+                            
+                            <div class="form-group col-md-4 col-12">
+                              
+                              @if($user->is_admin == 1)
+                                <select name="employement_status" id="employement_status" class="form-control" required="">
+                                    <option value="{{ $info->employement_status }}">{{ $info->employement_status }}</option>
+                                      @foreach($opt as $op)
+                                        @if($op->options != $info->employement_status && $op->type == 1)
+                                          <option value="{{ $op->options }}">{{ $op->options }}</option>
+                                        @endif
+                                      @endforeach
+                                </select>
+                                <label>Employement Status</label>
+                                <div class="invalid-feedback">
+                                  Please select employement status
+                                </div>
+                              @else
+                                @if($info->employement_status)  
+                                  <input 
+                                    type="text"
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
+                                    value="{{ $info->employement_status }}" 
+                                  >
+                                @else
+                                  <input 
+                                    type="text"
+                                    class="form-control {{ $user->is_admin == 1 ? 'input-disable':''}}" 
+                                    value="Need Update" 
+                                  >
+                                @endif
+                                <label>Employement Status</label>
+                              @endif
+                            </div>
+                          
+                            
+                            <div class="form-group col-md-4 col-12">
                               
                               @if($user->is_admin == 1)
                                 <select name="contract_status" id="contract_status" class="form-control" required="">
                                     <option value="{{ $info->contract_status }}">{{ $info->contract_status }}</option>
-                                    <option value="Daily"> Daily</option>
-                                    <option value="Monthly"> Monthly</option>
-                                    <option value="Fixed"> Fixeds</option>
+                                    <option value="Active"> Active</option>
+                                    <option value="Up for renewa"> Up for renewal</option>
+                                    <option value="Not Renewed"> Not Renewed</option>
+                                    <option value="Notice Served"> Notice Served</option>
+                                    <option value="Expired"> Expired</option>
+                                    <option value="Termindated"> Termindated</option>
                                 </select>
                                 <label>Contract Status</label>
                                 <div class="invalid-feedback">

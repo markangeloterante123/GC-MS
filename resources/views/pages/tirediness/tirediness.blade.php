@@ -3,8 +3,9 @@
 @endphp
 
 <x-app-layout>
+    
     <x-slot name="header_content">
-        <h1>{{ __('Tirediness User') }}</h1>
+        <h1>{{ __('Tirediness Records') }}</h1>
 
         <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
@@ -63,8 +64,16 @@
                                                                         @if($record->month == 'January')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Jan, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -105,8 +114,16 @@
                                                                         @if($record->month == 'February')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Feb, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -147,8 +164,16 @@
                                                                         @if($record->month == 'March')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Mar, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -189,8 +214,16 @@
                                                                         @if($record->month == 'April')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Apr, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -231,8 +264,16 @@
                                                                         @if($record->month == 'May')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>May, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -273,8 +314,16 @@
                                                                         @if($record->month == 'June')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Jun, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -315,8 +364,16 @@
                                                                         @if($record->month == 'July')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Jul, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -357,8 +414,16 @@
                                                                         @if($record->month == 'August')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Aug, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -399,8 +464,16 @@
                                                                         @if($record->month == 'September')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Sep, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -441,8 +514,16 @@
                                                                         @if($record->month == 'October')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Oct, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -483,8 +564,16 @@
                                                                         @if($record->month == 'November')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Nov, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -525,8 +614,16 @@
                                                                         @if($record->month == 'December')   
                                                                             <tr>
                                                                                 <td>{{ $record->entryId}}</td>
-                                                                                <td>{{ $record->date}}</td>
-                                                                                <td>{{ $record->employee_id }}</td>
+                                                                                <td>Dec, {{ $record->date}}</td>
+                                                                                <td>
+                                                                                    @if($record->employee_id <= 9)
+                                                                                        ID: 00{{ $record->employee_id }}
+                                                                                    @elseif($record->employee_id <= 99)
+                                                                                        ID: 0{{ $record->employee_id }}
+                                                                                    @else
+                                                                                        ID: {{ $record->employee_id }}
+                                                                                    @endif
+                                                                                </td>
                                                                                 <td>{{ $record->last_name }}</td>
                                                                                 <td>{{ $record->first_name }}</td>
                                                                                 <td>{{ $record->reason }}</td>
@@ -548,8 +645,57 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
+                <div class="card">
+                    <div class="card-header">
+                        <h1><i class="fas fa-list"></i> Tirediness All Records</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped text-sm text-gray-600" >
+                                <thead>
+                                    <tr>
+                                        <th>Entry ID:</th>
+                                        <th>Date</th>
+                                        <th>Employee ID</th>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                        <th>Reason</th>
+                                        <th>Minutes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($history as $record)
+                                        <tr>
+                                            <td>{{ $record->entryId}}</td>
+                                            <td>{{ $record->month }} {{ $record->date}}, {{ $record->year }}</td>
+                                            <td>
+                                                @if($record->employee_id <= 9)
+                                                   ID: 00{{ $record->employee_id }}
+                                                @elseif($record->employee_id <= 99)
+                                                   ID: 0{{ $record->employee_id }}
+                                                @else
+                                                   ID: {{ $record->employee_id }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $record->last_name }}</td>
+                                            <td>{{ $record->first_name }}</td>
+                                            <td>{{ $record->reason }}</td>
+                                            <td>{{ $record->minutes }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div id="table_pagination" class="py-3">
+                            {{ $history->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="col-md-3 col-12">
                 @if (session('status'))
                     <h6 class="alert alert-success">{{ session('status') }}</h6>

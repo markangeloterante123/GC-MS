@@ -21,10 +21,16 @@ class TirednessRecController extends Controller
     {
         //
         $data = User::orderby('name','asc')->get();
+        $history = FileRecord::join('tiredness_recs', 'tiredness_recs.user_id', '=', 'file_records.user_id')
+            ->orderby('tiredness_recs.year','desc')
+            ->orderby('file_records.last_name','asc')
+            ->paginate(100);
+            
         $records = FileRecord::join('tiredness_recs', 'tiredness_recs.user_id', '=', 'file_records.user_id')
-            ->orderby('year','desc')
+            ->orderby('tiredness_recs.year','desc')
+            ->orderby('tiredness_recs.id','asc')
             ->get(); 
-        return view('pages.tirediness.tirediness', compact('data', 'records'));
+        return view('pages.tirediness.tirediness', compact('data', 'records', 'history'));
     }
 
     /**
